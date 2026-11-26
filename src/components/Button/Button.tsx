@@ -1,4 +1,5 @@
 import { useId, type ComponentProps, type MouseEvent } from "react";
+import "./Button.css";
 
 export type ButtonProps = Omit<ComponentProps<"button">, "disabled"> & {
   /** Вигляд кнопки: `primary` (головна дія) або `secondary` (додаткова). */
@@ -14,14 +15,13 @@ export type ButtonProps = Omit<ComponentProps<"button">, "disabled"> & {
 };
 
 const base =
-  "group inline-flex items-center justify-center rounded-control border font-sans font-medium transition " +
+  "btn-fx group inline-flex items-center justify-center rounded-control border font-sans font-medium transition " +
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent " +
   "aria-disabled:cursor-not-allowed aria-disabled:border-line aria-disabled:bg-canvas aria-disabled:text-ink-muted";
 
 const variants = {
-  primary:
-    "border-accent bg-accent text-canvas not-aria-disabled:hover:border-ink not-aria-disabled:hover:bg-ink",
-  secondary: "border-ink-muted bg-canvas text-ink not-aria-disabled:hover:bg-surface",
+  primary: "btn-fx--primary border-accent bg-accent text-canvas",
+  secondary: "btn-fx--secondary border-ink-muted bg-canvas text-ink",
 } as const;
 
 const sizes = {
@@ -29,7 +29,7 @@ const sizes = {
   lg: "px-8 py-4 text-lead",
 } as const;
 
-const arrowBase = "ml-2 h-3 w-6 shrink-0 transition motion-reduce:transition-none";
+const arrowBase = "ml-2 h-3 w-6 shrink-0 transition duration-300 motion-reduce:transition-none";
 const arrowIdle = "opacity-0 -translate-x-2";
 const arrowActive =
   "group-hover:opacity-100 group-hover:translate-none group-focus-visible:opacity-100 group-focus-visible:translate-none";
@@ -46,6 +46,7 @@ export function Button({
   className,
   children,
   onClick,
+  onMouseMove,
   type = "button",
   ...props
 }: ButtonProps) {
@@ -59,6 +60,16 @@ export function Button({
     onClick?.(event);
   };
 
+  // Світло за курсором: кладемо позицію миші в --mx і --my (їх читає Button.css).
+  const handleMouseMove = (event: MouseEvent<HTMLButtonElement>) => {
+    if (!disabled) {
+      const rect = event.currentTarget.getBoundingClientRect();
+      event.currentTarget.style.setProperty("--mx", `${event.clientX - rect.left}px`);
+      event.currentTarget.style.setProperty("--my", `${event.clientY - rect.top}px`);
+    }
+    onMouseMove?.(event);
+  };
+
   return (
     <div className="inline-flex flex-col items-start gap-2">
       <button
@@ -67,6 +78,7 @@ export function Button({
         aria-disabled={disabled || undefined}
         aria-describedby={disabled ? reasonId : props["aria-describedby"]}
         onClick={handleClick}
+        onMouseMove={handleMouseMove}
         className={[base, variants[variant], sizes[size], className].filter(Boolean).join(" ")}
       >
         {children}

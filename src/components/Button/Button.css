@@ -1,0 +1,92 @@
+/*
+ * Ефекти кнопки. Усі кольори й розміри беруться зі змінних токенів з @theme
+ * (var(--color-*), var(--spacing-*)), жодного hex чи rgb.
+ * Світло йде за курсором через --mx і --my, їх виставляє Button.tsx в onMouseMove.
+ */
+
+.btn-fx {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  --mx: 50%;
+  --my: 50%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-fx--primary {
+  /* Світло з ink: у центрі колір ink, до краю зникає. */
+  --btn-glow: var(--color-ink);
+  --btn-halo: color-mix(in srgb, var(--color-ink-muted) 25%, transparent);
+  --btn-press: color-mix(in srgb, var(--color-canvas) 30%, transparent);
+}
+
+.btn-fx--secondary {
+  /* М'яке світло з ink-muted. */
+  --btn-glow: color-mix(in srgb, var(--color-ink-muted) 30%, transparent);
+  --btn-halo: color-mix(in srgb, var(--color-ink-muted) 25%, transparent);
+  --btn-press: color-mix(in srgb, var(--color-ink-muted) 20%, transparent);
+}
+
+/* Світло: шар під текстом, змінюється лише його прозорість, сам градієнт іде за курсором. */
+.btn-fx::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-out;
+  background: radial-gradient(
+    circle calc(var(--spacing-8) * 3) at var(--mx) var(--my),
+    var(--btn-glow) 0,
+    color-mix(in srgb, var(--btn-glow) 40%, transparent) 55%,
+    transparent 100%
+  );
+}
+
+/* Hover лише там, де є справжній вказівник, щоб на дотикових екранах не залипав. */
+@media (hover: hover) and (pointer: fine) {
+  .btn-fx:not([aria-disabled="true"]):hover::before {
+    opacity: 1;
+  }
+
+  .btn-fx:not([aria-disabled="true"]):hover {
+    translate: 0 calc(var(--spacing-2) / -4);
+    box-shadow: 0 var(--spacing-2) var(--spacing-6) var(--btn-halo);
+  }
+}
+
+/* Натискання (працює й на дотикових екранах): стиснення й внутрішня тінь. */
+.btn-fx:not([aria-disabled="true"]):active,
+.btn-fx:not([aria-disabled="true"]):hover:active {
+  translate: none;
+  scale: 0.96;
+  box-shadow: inset 0 calc(var(--spacing-3) / 4) var(--spacing-3) var(--btn-press);
+}
+
+/* Вимкнена кнопка: жодних ефектів. */
+.btn-fx[aria-disabled="true"]::before {
+  display: none;
+}
+
+/* Без руху: ніякого підйому, стиснення, тіней і руху світла, лишається зміна кольору. */
+@media (prefers-reduced-motion: reduce) {
+  .btn-fx {
+    --mx: 50% !important;
+    --my: 50% !important;
+  }
+
+  .btn-fx,
+  .btn-fx:hover,
+  .btn-fx:active,
+  .btn-fx:hover:active {
+    translate: none !important;
+    scale: none !important;
+    box-shadow: none !important;
+    transition: none;
+  }
+
+  .btn-fx::before {
+    transition: opacity 0.3s ease-out;
+  }
+}
