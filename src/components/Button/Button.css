@@ -72,8 +72,7 @@
 }
 
 .btn-fx--secondary {
-  /* М'якше світло: 40% непрозорості, щоб текст ink лишався не нижче 4,5:1 навіть у центрі. */
-  --btn-alpha: 40%;
+  /* Кнопка "Get in touch": тепле світло з токена glow, коло вдвічі менше, ніж у primary. */
   --btn-halo: color-mix(in srgb, var(--color-ink-muted) 25%, transparent);
   --btn-press: color-mix(in srgb, var(--color-ink-muted) 20%, transparent);
 }
@@ -100,6 +99,19 @@
       )
       50%,
     color-mix(in srgb, var(--color-glow) var(--btn-alpha), transparent) 85%,
+    transparent 100%
+  );
+}
+
+/*
+ * Світло secondary: радіус 60 px (2,5 кроки відступу 6, половина від primary), центр glow
+ * з 35% непрозорості, до середини 8%, до краю зникає. Текст ink у центрі: 7,39:1.
+ */
+.btn-fx--secondary::before {
+  background: radial-gradient(
+    circle calc(var(--spacing-6) * 2.5) at var(--mx) var(--my),
+    color-mix(in srgb, var(--color-glow) 35%, transparent) 0,
+    color-mix(in srgb, var(--color-glow) 8%, transparent) 55%,
     transparent 100%
   );
 }
