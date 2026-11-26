@@ -9,7 +9,7 @@ export type ButtonProps = Omit<ComponentProps<"button">, "disabled"> & {
   withArrow?: boolean;
   /** Вимкнена кнопка: лишається у фокусі, але не спрацьовує. Позначається через `aria-disabled`. */
   disabled?: boolean;
-  /** Текст, який озвучує скрінрідер, коли кнопка вимкнена (`aria-describedby`). */
+  /** Видимий текст-пояснення під вимкненою кнопкою. Пов'язаний з кнопкою через `aria-describedby`, тож його озвучує й скрінрідер. */
   disabledReason?: string;
 };
 
@@ -60,7 +60,7 @@ export function Button({
   };
 
   return (
-    <>
+    <div className="inline-flex flex-col items-start gap-2">
       <button
         {...props}
         type={type}
@@ -86,10 +86,10 @@ export function Button({
         )}
       </button>
       {disabled && (
-        <span id={reasonId} hidden>
+        <span id={reasonId} className="font-sans text-caption text-ink-muted">
           {disabledReason}
         </span>
       )}
-    </>
+    </div>
   );
 }
