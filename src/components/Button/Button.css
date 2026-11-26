@@ -14,20 +14,23 @@
 }
 
 .btn-fx--primary {
-  /* Світло з ink: у центрі колір ink, до краю зникає. */
-  --btn-glow: var(--color-ink);
+  /* Насичене світло: повна непрозорість. */
+  --btn-alpha: 100%;
   --btn-halo: color-mix(in srgb, var(--color-ink-muted) 25%, transparent);
   --btn-press: color-mix(in srgb, var(--color-canvas) 30%, transparent);
 }
 
 .btn-fx--secondary {
-  /* М'яке світло з ink-muted. */
-  --btn-glow: color-mix(in srgb, var(--color-ink-muted) 30%, transparent);
+  /* М'якше світло: 40% непрозорості, щоб текст ink лишався не нижче 4,5:1 навіть у центрі. */
+  --btn-alpha: 40%;
   --btn-halo: color-mix(in srgb, var(--color-ink-muted) 25%, transparent);
   --btn-press: color-mix(in srgb, var(--color-ink-muted) 20%, transparent);
 }
 
-/* Світло: шар під текстом, змінюється лише його прозорість, сам градієнт іде за курсором. */
+/*
+ * Світло: шар під текстом, змінюється лише його прозорість, сам градієнт іде за курсором.
+ * Центр ink, через суміш ink і glow до краю glow, далі зникає. Радіус 120 px = 5 кроків відступу 6.
+ */
 .btn-fx::before {
   content: "";
   position: absolute;
@@ -37,9 +40,15 @@
   pointer-events: none;
   transition: opacity 0.3s ease-out;
   background: radial-gradient(
-    circle calc(var(--spacing-8) * 3) at var(--mx) var(--my),
-    var(--btn-glow) 0,
-    color-mix(in srgb, var(--btn-glow) 40%, transparent) 55%,
+    circle calc(var(--spacing-6) * 5) at var(--mx) var(--my),
+    color-mix(in srgb, var(--color-ink) var(--btn-alpha), transparent) 0,
+    color-mix(
+        in srgb,
+        color-mix(in srgb, var(--color-ink), var(--color-glow)) var(--btn-alpha),
+        transparent
+      )
+      50%,
+    color-mix(in srgb, var(--color-glow) var(--btn-alpha), transparent) 85%,
     transparent 100%
   );
 }
