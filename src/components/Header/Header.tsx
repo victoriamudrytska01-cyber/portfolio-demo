@@ -55,6 +55,7 @@ export function Header({
           closeLabel={closeLabel}
         />
       </div>
+      <div className="header__rule" aria-hidden="true" />
     </header>
   );
 }

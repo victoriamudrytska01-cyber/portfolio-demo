@@ -1,7 +1,27 @@
 /*
- * Мінімальна висота смужки шапки: 3 кроки відступу 8 (96 px), разом з вертикальними відступами
- * по 16 px (box-sizing border-box). Дорівнює висоті шапки старого сайту, вміст по центру.
+ * Висота смужки шапки на широкому екрані (від md): мінімум 3 кроки відступу 8 (96 px) разом
+ * з вертикальними відступами 16 px (box-sizing border-box). На вузькому екрані висоту дає вміст.
  */
-.header__row {
-  min-height: calc(var(--spacing-8) * 3);
+@media (min-width: 48rem) {
+  .header__row {
+    min-height: calc(var(--spacing-8) * 3);
+  }
+}
+
+/*
+ * Тонка темна лінія під шапкою на вузькому екрані (колір canvas) з бічними відступами 16 px,
+ * як на старому сайті. На широкому екрані її немає.
+ */
+.header__rule {
+  position: absolute;
+  bottom: 0;
+  left: var(--spacing-4);
+  right: var(--spacing-4);
+  border-top: 1px solid var(--color-canvas);
+}
+
+@media (min-width: 48rem) {
+  .header__rule {
+    display: none;
+  }
 }

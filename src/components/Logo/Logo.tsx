@@ -18,7 +18,7 @@ export type LogoProps = Omit<ComponentProps<typeof Link>, "href" | "children"> &
 };
 
 const link =
-  "inline-flex cursor-pointer items-center gap-4 rounded-control text-canvas " +
+  "inline-flex cursor-pointer items-center gap-3 rounded-control text-canvas md:gap-4 " +
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-canvas";
 
 /**
@@ -47,7 +47,7 @@ export function Logo({
       </span>
       {showName && (
         <span className="flex flex-col">
-          <span className="font-serif text-lead font-bold">{name}</span>
+          <span className="font-serif text-body font-bold md:text-lead">{name}</span>
           <span className="font-sans text-caption">{role}</span>
         </span>
       )}
