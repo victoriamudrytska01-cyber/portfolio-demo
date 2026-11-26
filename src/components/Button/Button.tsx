@@ -26,10 +26,10 @@ const variants = {
 
 const sizes = {
   md: "px-6 py-3 text-body",
-  lg: "px-8 py-4 text-lead",
+  lg: "btn-fx--lg px-8 py-4 text-body",
 } as const;
 
-const arrowBase = "ml-2 h-3 w-6 shrink-0 transition duration-300 motion-reduce:transition-none";
+const arrowBase = "btn-fx__arrow transition duration-300 ease-out motion-reduce:transition-none";
 const arrowIdle = "opacity-0 -translate-x-2";
 const arrowActive =
   "group-hover:opacity-100 group-hover:translate-none group-focus-visible:opacity-100 group-focus-visible:translate-none";
@@ -81,6 +81,8 @@ export function Button({
         onMouseMove={handleMouseMove}
         className={[base, variants[variant], sizes[size], className].filter(Boolean).join(" ")}
       >
+        {/* Порожнє місце зліва такої ж ширини, як стрілка з відступом: текст лишається по центру. */}
+        {withArrow && <span aria-hidden="true" className="btn-fx__spacer" />}
         {children}
         {withArrow && (
           <svg

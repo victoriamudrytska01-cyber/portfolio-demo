@@ -13,6 +13,31 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+/*
+ * Розмір lg збігається зі старою кнопкою "View my work": мінімальна ширина з токенів відступів
+ * (8 кроків по крок 8 плюс крок 6), висоту дають відступи py-4 і text-body.
+ */
+.btn-fx--lg {
+  min-width: calc(var(--spacing-8) * 8 + var(--spacing-6));
+}
+
+/*
+ * Стрілка як на старому сайті: пропорції 22 до 12 (висота крок 3, ширина висота * 22 / 12)
+ * і відступ від тексту крок 2. Місце під неї зарезервоване завжди, а такий самий
+ * порожній проміжок ліворуч тримає текст по центру кнопки.
+ */
+.btn-fx__arrow {
+  flex: none;
+  width: calc(var(--spacing-3) * 22 / 12);
+  height: var(--spacing-3);
+  margin-left: var(--spacing-2);
+}
+
+.btn-fx__spacer {
+  flex: none;
+  width: calc(var(--spacing-3) * 22 / 12 + var(--spacing-2));
+}
+
 .btn-fx--primary {
   /* Насичене світло: повна непрозорість. */
   --btn-alpha: 100%;
