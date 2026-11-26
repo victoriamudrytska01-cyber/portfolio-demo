@@ -19,7 +19,10 @@ export type LanguageSwitchProps = Omit<ComponentProps<"div">, "onChange" | "chil
 const buttonBase =
   "rounded-control px-3 py-2 font-sans text-body underline underline-offset-4 transition " +
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-canvas";
-const buttonActive = "font-semibold text-canvas decoration-transparent hover:decoration-current";
+// На вузькому екрані активна мова підкреслена й не жирна (як у мобільному меню старого сайту),
+// на широкому жирна без підкреслення.
+const buttonActive =
+  "text-canvas decoration-current md:font-semibold md:decoration-transparent md:hover:decoration-current";
 const buttonIdle = "lang-switch__muted decoration-transparent hover:decoration-current";
 
 /**
