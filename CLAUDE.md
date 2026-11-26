@@ -40,6 +40,19 @@
 - **WorkCard** (`src/components/WorkCard/WorkCard.tsx`): картка роботи, уся є посиланням. Параметри `title`, `description`, `href`, `image` (картинка з `src/assets`, імпортована в код), `imageAlt`. Обкладинка `aspect-cover`, кути `rounded-card`.
 - **FormField** (`src/components/FormField/FormField.tsx`): текстове поле з підписом над ним. Параметри `label`, `id`, `invalid`, `errorMessage`, `disabled`, `disabledReason`, решта атрибутів `input`. Підпис зв'язаний через `htmlFor`/`id`, помилка через `aria-invalid` і `aria-describedby`, вимкнене поле через `aria-disabled` з видимим поясненням.
 
+## Структура перших екранів
+
+Головний екран зібраний зі старого сайту (папка `portfolio`, лише читання) з компонентів дизайн-системи, лише з токенів. Нових компонентів для сторінок не вигадуємо: сторінка складається з Header, Logo, Navigation, LanguageSwitch, Button.
+
+- `src/app/page.tsx`: сторінка, лише рендерить `HomeScreen`.
+- `src/app/HomeScreen.tsx` (клієнтський): шапка (`Header` з `Logo`, `Navigation`, `LanguageSwitch` і `Button secondary` «Get in touch») та перший екран (`main.hero`): заголовок «I design» (`text-display`, `font-display`) із курсивом (`text-heading`, `font-serif italic`), підзаголовок (`text-lead`, на телефоні `text-body`, `ink-muted`), `Button primary` «View my work» зі стрілкою, статус із крапкою (`text-caption`), стрічка VM (`aspect-ribbon`).
+- `src/app/home.css`: розкладка першого екрана (висота під шапкою, розміри заголовка на телефоні як 13/18 і 2/3 токенів, обрізка й плавання стрічки). Усі розміри через `var(--spacing-*)` і `var(--text-*)`.
+- `src/content/home.ts`: тексти англійською (основна) і українською зі старого сайту. `src/content/useLanguage.ts`: вибір мови (localStorage, ключ `lang`), `html lang` оновлюється в `HomeScreen`.
+- `src/assets/`: `ribbon-vm.png` (стрічка), `status-dot.svg` (крапка статусу), `logo-vm.png` (знак у Logo). Картинки імпортуються в код, зовнішніх немає.
+- Розкладка: бічне поле `px-gutter`, відстань між текстом і стрічкою `gap-section` (від `xl`). До `lg` колонка зі стрічкою зверху, від `lg` текст ліворуч і стрічка праворуч, усе по центру по вертикалі. Заголовок починається з того самого поля, що й логотип.
+- Фон сторінки `canvas`, шапка `accent`. Розділи «роботи», «про мене», «контакти» ще не зроблені: кнопки й пункти меню ведуть до якорів `#work`, `#about`, `#contacts`.
+- Нові екрани й розділи додаємо за цією схемою: сторінка в `src/app`, тексти в `src/content`, картинки в `src/assets`, розкладка з токенів.
+
 ## Правила
 
 Заповнимо далі.
