@@ -15,7 +15,7 @@
   --color-accent: #f0e1d6;
   --color-ink: #f5e8de;
   --color-ink-muted: #b9afa5;
-  --color-danger: #ff6078;
+  --color-danger: #d4687e;
 
   /* Шрифти (змінні --font-onest, --font-manrope, --font-playfair задає src/app/fonts.ts) */
   --font-*: initial;

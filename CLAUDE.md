@@ -19,6 +19,7 @@
 Єдине джерело значень: блок `@theme` у `src/app/globals.css`. Hex, px і rem пишемо тільки там. Перегляд: Storybook, сторінка Foundations/Tokens (`npm run storybook`).
 
 - Кольори: `canvas`, `surface`, `line`, `accent`, `ink`, `ink-muted`, `danger`. Межа поля форми й кнопки без заливки: `ink-muted`, не `line`.
+- `danger`: вінний, бордовіший відтінок для тексту помилки й межі поля в стані помилки. Контраст: на `canvas` 5,3:1, на `surface` 4,8:1 (текст потребує 4,5:1, межа 3:1), тож підходить для обох.
 - Радіуси: `rounded-control`, `rounded-card` (обидва 0, кути прямі).
 - Розміри тексту: `text-caption`, `text-body`, `text-lead`, `text-heading`, `text-display`. Висота рядка, трекінг і жирність задані парами в `@theme`.
 - Шрифти: `font-sans` (Onest), `font-display` (Manrope 800), `font-serif` (Playfair Display). Підключені в `src/app/fonts.ts` з кирилицею.
