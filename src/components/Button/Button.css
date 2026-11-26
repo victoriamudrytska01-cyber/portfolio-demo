@@ -14,11 +14,12 @@
 }
 
 /*
- * Розмір lg збігається зі старою кнопкою "View my work": мінімальна ширина з токенів відступів
- * (8 кроків по крок 8 плюс крок 6), висоту дають відступи py-4 і text-body.
+ * Розмір lg збігається зі старою кнопкою "View my work": мінімальна ширина й висота з токенів
+ * button-lg і button-lg-h (плавні, від ширини вікна), відступи py-3 і text-body.
  */
 .btn-fx--lg {
-  min-width: calc(var(--spacing-8) * 8 + var(--spacing-6));
+  min-width: var(--spacing-button-lg);
+  min-height: var(--spacing-button-lg-h);
 }
 
 /*

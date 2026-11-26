@@ -3,36 +3,28 @@
  * Значення відсотків стрічки (обрізка) взято зі старого сайту.
  */
 
-/* Перший екран заповнює висоту вікна під шапкою: 80 px на вузькому екрані, 96 px на широкому. */
+/* Перший екран заповнює висоту вікна під шапкою: 80 px на вузькому екрані, токен header на широкому. */
 .hero {
   min-height: calc(100svh - (var(--spacing-8) * 2 + var(--spacing-4)));
 }
 
 @media (min-width: 48rem) {
   .hero {
-    min-height: calc(100svh - var(--spacing-8) * 3);
+    min-height: calc(100svh - var(--spacing-header));
   }
 }
 
 /*
- * Заголовок: на телефоні зменшені розміри токенів (display 13/18 = 52 px, heading 2/3 = 32 px,
- * як на старому мобільному сайті), від md розміри токенів без змін.
+ * Заголовок на телефоні: зменшені розміри токенів (display 13/18 = 52 px, heading 2/3 = 32 px,
+ * як на старому мобільному сайті). Від md працюють токени hero-display і hero-italic.
  */
-.hero .hero__strong.text-display {
-  font-size: calc(var(--text-display) * 13 / 18);
-}
-
-.hero .hero__italic.text-heading {
-  font-size: calc(var(--text-heading) * 2 / 3);
-}
-
-@media (min-width: 48rem) {
+@media (max-width: 47.9375rem) {
   .hero .hero__strong.text-display {
-    font-size: var(--text-display);
+    font-size: calc(var(--text-display) * 13 / 18);
   }
 
   .hero .hero__italic.text-heading {
-    font-size: var(--text-heading);
+    font-size: calc(var(--text-heading) * 2 / 3);
   }
 }
 
@@ -45,9 +37,45 @@
   white-space: nowrap;
 }
 
-/* Ширина підзаголовка: 15 кроків відступу 8 (480 px). */
-.hero__lead {
-  max-width: calc(var(--spacing-8) * 15);
+/* Підзаголовок на широкому екрані: ширина з токена lead, відступ зверху 0,65 від stack. */
+@media (min-width: 48rem) {
+  .hero .hero__lead {
+    max-width: var(--container-lead);
+    margin-top: calc(var(--spacing-stack) * 0.65);
+  }
+}
+
+/*
+ * Від lg: без нижнього відступу (текст по центру висоти), стрічка відступає від правого поля на
+ * 20 px (крок 3 плюс крок 2), як на старому сайті.
+ */
+@media (min-width: 64rem) {
+  .hero {
+    padding-bottom: 0;
+  }
+
+  .hero__art {
+    margin-right: calc(var(--spacing-3) + var(--spacing-2));
+  }
+}
+
+/*
+ * Стрічка на телефоні: 112% ширини екрана по центру, як на старому сайті (краї обрізає перший екран).
+ */
+@media (max-width: 47.9375rem) {
+  .hero {
+    overflow-x: clip;
+  }
+
+  .hero__art {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero__art-crop {
+    flex: none;
+    width: 112vw;
+  }
 }
 
 /* Кнопка «View my work» на телефоні на всю ширину (обгортка Button теж розтягується). */

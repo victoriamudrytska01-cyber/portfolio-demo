@@ -34,7 +34,7 @@ export type NavigationProps = Omit<ComponentProps<"nav">, "children"> & {
 const focusRing =
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-canvas";
 
-const linkBase = `rounded-control px-3 py-2 font-sans text-body underline underline-offset-4 transition ${focusRing}`;
+const linkBase = `rounded-control py-2 font-sans text-nav underline underline-offset-4 transition ${focusRing}`;
 // Пункти відкритого меню на вузькому екрані: великий курсив із засічками (розмір з токена
 // text-heading, підлаштований під екран у Navigation.css).
 const panelLinkBase = `nav-panel__link block rounded-control py-4 font-serif italic text-heading underline underline-offset-4 transition ${focusRing}`;
@@ -109,8 +109,8 @@ export function Navigation({
         .join(" ")}
     >
       {/* Широкий екран: пункти й додаткові елементи в рядок. */}
-      <div className="hidden items-center gap-6 md:flex">
-        <ul className="flex items-center gap-6">{renderLinks()}</ul>
+      <div className="hidden items-center gap-nav md:flex">
+        <ul className="flex items-center gap-nav">{renderLinks()}</ul>
         {actions}
       </div>
 

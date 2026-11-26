@@ -9,3 +9,22 @@
 .lang-switch__muted:is(button):hover {
   color: var(--color-canvas);
 }
+
+/*
+ * Відступи кнопок мов. На вузькому екрані (мобільне меню) кожна кнопка має бічні відступи 12 px
+ * для зручного натискання. На широкому (від md) кнопки без бічних відступів, а навколо
+ * роздільника «/» по 4 px, як пробіли в «EN / UA» на старому сайті (68 px завширшки).
+ */
+.lang-switch__button {
+  padding-inline: var(--spacing-3);
+}
+
+@media (min-width: 48rem) {
+  .lang-switch__button {
+    padding-inline: 0;
+  }
+
+  .lang-switch__slash {
+    padding-inline: calc(var(--spacing-2) / 2);
+  }
+}

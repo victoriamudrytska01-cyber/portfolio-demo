@@ -54,9 +54,9 @@ export function HomeScreen() {
 
       <main
         id="top"
-        className="hero flex flex-col items-stretch justify-center gap-8 px-4 pb-8 lg:flex-row lg:items-center lg:px-gutter xl:gap-section"
+        className="hero flex flex-col items-stretch justify-center gap-8 px-4 pb-8 lg:flex-row lg:items-center lg:justify-between lg:px-gutter"
       >
-        <div className="hero__art order-first lg:order-last lg:flex-1">
+        <div className="hero__art order-first lg:order-last lg:w-ribbon lg:flex-none">
           <div className="hero__art-crop relative aspect-ribbon overflow-hidden">
             <Image src={ribbon} alt={t.art} priority sizes="100vw" className="hero__art-img" />
           </div>
@@ -64,20 +64,20 @@ export function HomeScreen() {
 
         <div className="hero__copy flex flex-col items-start lg:shrink-0">
           <h1 className="flex flex-col font-normal">
-            <span className="hero__strong font-display text-display text-ink">{t.title}</span>
-            <span className="hero__italic font-serif text-heading italic text-ink">
+            <span className="hero__strong font-display text-display text-ink md:text-hero-display">{t.title}</span>
+            <span className="hero__italic font-serif text-heading italic text-ink md:text-hero-italic">
               {t.italic.map((line) => (
                 <span key={line}>{line}</span>
               ))}
             </span>
           </h1>
-          <p className="hero__lead mt-6 font-sans text-body text-ink-muted md:text-lead">{t.lead}</p>
-          <div className="hero__cta mt-8">
+          <p className="hero__lead mt-6 font-sans text-body text-ink-muted md:text-hero-lead">{t.lead}</p>
+          <div className="hero__cta mt-8 md:mt-stack">
             <Button variant="primary" size="lg" withArrow onClick={goTo("#work")}>
               {t.cta}
             </Button>
           </div>
-          <p className="mt-8 flex items-center gap-3 font-sans text-caption text-ink-muted">
+          <p className="mt-8 flex items-center gap-3 font-sans text-caption text-ink-muted md:mt-stack md:text-body">
             <Image src={dot} alt="" className="size-3" />
             {t.status}
           </p>

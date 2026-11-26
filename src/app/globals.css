@@ -47,6 +47,30 @@
   --text-display--letter-spacing: 0;
   --text-display--font-weight: 800;
 
+  /*
+   * Шкала першого екрана на широкому екрані (від md): розміри старого сайту, що росли разом
+   * з шириною вікна. Плавні (clamp від vw): на 1710 px це 84, 59 і 18 px, на 1920 px 94, 66 і 21 px.
+   * На телефоні заголовок бере зменшені розміри text-display і text-heading (див. home.css).
+   */
+  /* Пункти меню й перемикач мови в шапці на широкому екрані (text-nav): 18 px, як на старому сайті */
+  --text-nav: 1.125rem;
+  --text-nav--line-height: 1.4;
+  --text-nav--letter-spacing: 0;
+  --text-nav--font-weight: 400;
+
+  --text-hero-display: clamp(4.5rem, 4.92vw, 5.9375rem);
+  --text-hero-display--line-height: 1.37;
+  --text-hero-display--letter-spacing: 0;
+  --text-hero-display--font-weight: 800;
+  --text-hero-italic: clamp(3rem, 3.466vw, 4.25rem);
+  --text-hero-italic--line-height: 1.336;
+  --text-hero-italic--letter-spacing: 0;
+  --text-hero-italic--font-weight: 400;
+  --text-hero-lead: clamp(1.0625rem, 1.07vw, 1.375rem);
+  --text-hero-lead--line-height: 1.27;
+  --text-hero-lead--letter-spacing: 0;
+  --text-hero-lead--font-weight: 400;
+
   /* Радіуси: кути прямі */
   --radius-*: initial;
   --radius-control: 0;
@@ -62,10 +86,24 @@
   --spacing-section: 6rem;
   /* Бічне поле сторінки (px-gutter): значення --pad-x зі старого сайту, від 32 до 64 px залежно від ширини екрана */
   --spacing-gutter: clamp(2rem, 4.4vw, 4rem);
+  /* Висота шапки на широкому екрані (h-header): як на старому сайті, від 84 до 120 px залежно від висоти вікна */
+  --spacing-header: clamp(5.25rem, 10.5vh, 7.5rem);
+  /* Проміжок між пунктами меню, перемикачем мови й кнопкою в шапці (gap-nav): від 28 до 56 px залежно від ширини екрана */
+  --spacing-nav: clamp(1.75rem, 3.9vw, 3.5rem);
+  /* Вертикальні проміжки першого екрана між підзаголовком, кнопкою й статусом (mt-stack): від 24 до 72 px залежно від ширини екрана */
+  --spacing-stack: clamp(1.5rem, 3vw, 4.5rem);
+  /* Ширина знака VM в Logo на широкому екрані (w-logo): 67 px, як на старому сайті */
+  --spacing-logo: 4.1875rem;
+  /* Розмір lg кнопки (мінімальна ширина й висота): на 1710 px це 249 на 52 px, на 1920 px 279 на 59 px, як на старому сайті */
+  --spacing-button-lg: clamp(13.1875rem, 14.53vw, 20rem);
+  --spacing-button-lg-h: clamp(2.9375rem, 3.06vw, 5rem);
 
-  /* Ширина контенту (max-w-content) */
+  /* Ширина контенту (max-w-content), стрічки VM (w-ribbon, половина ширини вікна) і підзаголовка (max-w-lead) */
   --container-*: initial;
   --container-content: 80rem;
+  --container-ribbon: 48.9vw;
+  /* Найбільша ширина підзаголовка першого екрана (max-w-lead): 471 px на 1710 px, 531 px на 1920 px, як на старому сайті */
+  --container-lead: clamp(17.5rem, 27.6vw, 33rem);
 
   /* Пропорції картинок */
   --aspect-cover: 3 / 2;

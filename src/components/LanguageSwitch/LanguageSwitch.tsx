@@ -17,7 +17,7 @@ export type LanguageSwitchProps = Omit<ComponentProps<"div">, "onChange" | "chil
 };
 
 const buttonBase =
-  "rounded-control px-3 py-2 font-sans text-body underline underline-offset-4 transition " +
+  "lang-switch__button rounded-control py-2 font-sans text-body underline underline-offset-4 transition md:text-nav " +
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-canvas";
 // На вузькому екрані активна мова підкреслена й не жирна (як у мобільному меню старого сайту),
 // на широкому жирна без підкреслення.
@@ -52,7 +52,7 @@ export function LanguageSwitch({
       {languages.map((language, index) => (
         <span key={language.code} className="inline-flex items-center">
           {index > 0 && (
-            <span aria-hidden="true" className="lang-switch__muted font-sans text-body">
+            <span aria-hidden="true" className="lang-switch__muted lang-switch__slash font-sans text-body md:text-nav">
               /
             </span>
           )}

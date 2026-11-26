@@ -15,19 +15,19 @@ export type ButtonProps = Omit<ComponentProps<"button">, "disabled"> & {
 };
 
 const base =
-  "btn-fx group inline-flex items-center justify-center whitespace-nowrap rounded-control border font-sans font-medium transition " +
+  "btn-fx group inline-flex items-center justify-center whitespace-nowrap rounded-control border font-sans transition " +
   "focus-visible:outline-2 focus-visible:outline-offset-2 " +
   "aria-disabled:cursor-not-allowed aria-disabled:border-line aria-disabled:bg-canvas aria-disabled:text-ink-muted";
 
 const variants = {
   // Контур фокусу кольору фону, на якому стоїть кнопка: primary на canvas, secondary на світлому (accent).
-  primary: "btn-fx--primary border-accent bg-accent text-canvas focus-visible:outline-accent",
-  secondary: "btn-fx--secondary border-canvas bg-canvas text-ink focus-visible:outline-canvas",
+  primary: "btn-fx--primary border-accent bg-accent font-medium text-canvas focus-visible:outline-accent",
+  secondary: "btn-fx--secondary border-canvas bg-canvas font-normal text-ink focus-visible:outline-canvas",
 } as const;
 
 const sizes = {
-  md: "px-6 py-3 text-body",
-  lg: "btn-fx--lg px-8 py-4 text-body",
+  md: "px-8 py-3 text-body",
+  lg: "btn-fx--lg px-8 py-3 text-body",
 } as const;
 
 /**

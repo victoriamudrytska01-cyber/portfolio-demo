@@ -65,7 +65,7 @@ export const fv = fontVariables;
 
 ## Розміри тексту
 
-Кожен крок шкали: розмір, висота рядка, трекінг і жирність задані парами в @theme. Значення в таблиці прочитано з браузера.
+Нижні чотири рядки (text-nav і три hero) плавні: їхній розмір залежить від ширини вікна, а в таблиці показано значення для поточного вікна. Кожен крок шкали: розмір, висота рядка, трекінг і жирність задані парами в @theme. Значення в таблиці прочитано з браузера.
 
 <TypeScaleTable />
 
@@ -105,8 +105,36 @@ export const fv = fontVariables;
     <div className="font-sans text-caption">gutter: бічне поле сторінки (px-gutter), від 32 до 64 px залежно від ширини екрана, як на старому сайті</div>
   </div>
   <div className="flex flex-col gap-2">
+    <div className="bg-accent h-3 w-header" />
+    <div className="font-sans text-caption">header: висота шапки на широкому екрані (h-header), від 84 до 120 px залежно від висоти вікна</div>
+  </div>
+  <div className="flex flex-col gap-2">
+    <div className="bg-accent h-3 w-nav" />
+    <div className="font-sans text-caption">nav: проміжок між пунктами меню, перемикачем мови й кнопкою в шапці (gap-nav), від 28 до 56 px залежно від ширини екрана</div>
+  </div>
+  <div className="flex flex-col gap-2">
+    <div className="bg-accent h-3 w-stack" />
+    <div className="font-sans text-caption">stack: вертикальні проміжки першого екрана між підзаголовком, кнопкою й статусом (mt-stack), від 24 до 72 px залежно від ширини екрана</div>
+  </div>
+  <div className="flex flex-col gap-2">
+    <div className="bg-accent h-3 w-logo" />
+    <div className="font-sans text-caption">logo: ширина знака VM на широкому екрані (w-logo), 67 px</div>
+  </div>
+  <div className="flex flex-col gap-2">
+    <div className="bg-accent h-3 w-button-lg" />
+    <div className="font-sans text-caption">button-lg і button-lg-h: мінімальна ширина й висота кнопки lg, на 1710 px це 249 на 52 px, на 1920 px 279 на 59 px</div>
+  </div>
+  <div className="flex flex-col gap-2">
     <div className="bg-surface border border-line h-6 w-full max-w-content" />
     <div className="font-sans text-caption">content: найбільша ширина контенту (max-w-content)</div>
+  </div>
+  <div className="flex flex-col gap-2">
+    <div className="bg-surface border border-line h-6 w-ribbon" />
+    <div className="font-sans text-caption">ribbon: ширина стрічки VM на першому екрані (w-ribbon), 48,9% ширини вікна</div>
+  </div>
+  <div className="flex flex-col gap-2">
+    <div className="bg-surface border border-line h-6 w-full max-w-lead" />
+    <div className="font-sans text-caption">lead: найбільша ширина підзаголовка першого екрана (max-w-lead), 471 px на 1710 px, 531 px на 1920 px</div>
   </div>
 </div>
 
