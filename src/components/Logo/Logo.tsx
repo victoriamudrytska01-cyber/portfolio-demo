@@ -18,7 +18,7 @@ export type LogoProps = Omit<ComponentProps<typeof Link>, "href" | "children"> &
 };
 
 const link =
-  "group inline-flex items-center gap-4 rounded-control text-canvas " +
+  "inline-flex cursor-pointer items-center gap-4 rounded-control text-canvas " +
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-canvas";
 
 /**
@@ -42,14 +42,12 @@ export function Logo({
       aria-label={showName ? props["aria-label"] : (label ?? name)}
       className={[link, className].filter(Boolean).join(" ")}
     >
-      <span className="logo__mark relative aspect-logo shrink-0 transition group-hover:opacity-80">
+      <span className="logo__mark relative aspect-logo shrink-0">
         <Image src={mark} alt="" fill sizes="100vw" className="object-contain" />
       </span>
       {showName && (
         <span className="flex flex-col">
-          <span className="whitespace-nowrap font-serif text-lead font-bold underline decoration-transparent underline-offset-4 transition group-hover:decoration-current">
-            {name}
-          </span>
+          <span className="whitespace-nowrap font-serif text-lead font-bold">{name}</span>
           <span className="font-sans text-caption">{role}</span>
         </span>
       )}
