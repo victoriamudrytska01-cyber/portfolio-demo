@@ -16,15 +16,17 @@
 
 /*
  * Заголовок на телефоні: зменшені розміри токенів (display 13/18 = 52 px, heading 2/3 = 32 px,
- * як на старому мобільному сайті). Від md працюють токени hero-display і hero-italic.
+ * як на старому мобільному сайті). Від md працюють самі токени display і heading (плавні, від ширини вікна).
  */
 @media (max-width: 47.9375rem) {
   .hero .hero__strong.text-display {
     font-size: calc(var(--text-display) * 13 / 18);
+    line-height: 1;
   }
 
   .hero .hero__italic.text-heading {
     font-size: calc(var(--text-heading) * 2 / 3);
+    line-height: 1.3;
   }
 }
 

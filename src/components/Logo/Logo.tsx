@@ -47,8 +47,8 @@ export function Logo({
       </span>
       {showName && (
         <span className="flex flex-col">
-          <span className="font-serif text-body font-bold md:text-brand">{name}</span>
-          <span className="font-sans text-caption md:text-brand-role">{role}</span>
+          <span className="font-serif text-body font-bold md:text-lead">{name}</span>
+          <span className="font-sans text-caption">{role}</span>
         </span>
       )}
     </Link>

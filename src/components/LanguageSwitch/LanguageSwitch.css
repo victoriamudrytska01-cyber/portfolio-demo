@@ -1,9 +1,9 @@
 /*
- * Приглушений колір для світлого фону (paper): суміш canvas і paper, 70% canvas.
- * Контраст з paper 6,24:1. Значення беруться зі змінних токенів, жодного hex.
+ * Приглушений колір для світлого фону (accent): суміш canvas і accent, 70% canvas.
+ * Контраст з accent 6,07:1. Значення беруться зі змінних токенів, жодного hex.
  */
 .lang-switch__muted {
-  color: color-mix(in srgb, var(--color-canvas) 70%, var(--color-paper));
+  color: color-mix(in srgb, var(--color-canvas) 70%, var(--color-accent));
 }
 
 .lang-switch__muted:is(button):hover {

@@ -18,10 +18,10 @@
 
 Єдине джерело значень: блок `@theme` у `src/app/globals.css`. Hex, px і rem пишемо тільки там. Перегляд: Storybook, сторінка Foundations/Tokens (`npm run storybook`).
 
-- Кольори (дев'ять): `canvas`, `surface`, `line`, `accent`, `paper`, `glow`, `ink`, `ink-muted`, `danger`. `paper` це фон світлої шапки (`bg-paper`, колір `--paper` старого сайту, трохи світліший за `accent`, яким є кнопка). `glow` це колір світіння кнопок (світло за курсором), у компонентах тільки як `var(--color-glow)` або клас `*-glow`. Межа поля форми й кнопки без заливки: `ink-muted`, не `line`.
+- Кольори (вісім): `canvas`, `surface`, `line`, `accent`, `glow`, `ink`, `ink-muted`, `danger`. `glow` це колір світіння кнопок (світло за курсором), у компонентах тільки як `var(--color-glow)` або клас `*-glow`. Межа поля форми й кнопки без заливки: `ink-muted`, не `line`.
 - `danger`: вінний, бордовіший відтінок для тексту помилки й межі поля в стані помилки. Контраст: на `canvas` 5,3:1, на `surface` 4,8:1 (текст потребує 4,5:1, межа 3:1), тож підходить для обох.
 - Радіуси: `rounded-control`, `rounded-card` (обидва 0, кути прямі).
-- Розміри тексту: `text-caption`, `text-body`, `text-lead`, `text-heading`, `text-display`. Висота рядка, трекінг і жирність задані парами в `@theme`.
+- Розміри тексту (рівно сім): `text-caption`, `text-body`, `text-lead`, `text-heading`, `text-display`, `text-nav`, `text-small`. `text-lead` (17–22 px), `text-heading` (48–68 px) і `text-display` (72–95 px) плавні, від ширини вікна; на телефоні вони мають мінімум. Висота рядка, трекінг і жирність задані парами в `@theme`.
 - Шрифти: `font-sans` (Onest), `font-display` (Manrope 800), `font-serif` (Playfair Display). Підключені в `src/app/fonts.ts` з кирилицею.
 - Відступи: тільки 8, 12, 16, 24, 32 px (числа 2, 3, 4, 6, 8 у класах), плюс `section` (відстань між великими секціями), `max-w-content` (ширина контенту) і `gutter` (бічне поле сторінки, класи `px-gutter`, `w-gutter`: `clamp(2rem, 4.4vw, 4rem)`, тобто від 32 до 64 px, значення `--pad-x` старого сайту; ним починаються шапка й заголовок першого екрана).
 - Розкладкові токени першого екрана й шапки (плавні, значення старого сайту; класи через префікси `h-`, `gap-`, `mt-`, `w-`, `max-w-`):
@@ -31,7 +31,7 @@
   - `logo`: ширина знака VM на широкому екрані, `3.75rem` (60 px);
   - `button-lg` і `button-lg-h`: мінімальна ширина й висота кнопки lg, `clamp(13.1875rem, 15.6vw, 20rem)` і `clamp(2.9375rem, 3.06vw, 5rem)` (на екрані 1920 px завширшки це 300 на 59 px); `button-md` і `button-md-h`: те саме для кнопки md, `clamp(8rem, 9.32vw, 12rem)` і `clamp(2.5rem, 3.02vw, 4rem)` (179 на 58 px);
   - `ribbon` (`w-ribbon`): ширина стрічки VM, `48.9vw`; `lead` (`max-w-lead`): найбільша ширина підзаголовка, `clamp(17.5rem, 27.6vw, 33rem)`.
-- Розміри тексту першого екрана й шапки на широкому екрані (плавні): `text-nav` (16 px), `text-small` (15 px, текст кнопок і статусу), `text-brand` (20 px) і `text-brand-role` (12 px) в Logo, `text-hero-lead` (17–22 px), `text-hero-italic` (48–68 px), `text-hero-display` (72–95 px), з парами висоти рядка, трекінгу й жирності. На телефоні заголовок бере зменшені `text-display` і `text-heading` (див. `home.css`).
+- `text-nav` (16 px): пункти меню й перемикач мови в шапці на широкому екрані (Navigation, LanguageSwitch). `text-small` (15 px): текст кнопок і статус на першому екрані на широкому екрані (Button md і lg, статус). Більше додаткових розмірів не додаємо без потреби: ліміт дев'ять, кожен додатковий має використовуватись щонайменше двічі. На телефоні заголовок бере зменшені `text-display` і `text-heading` (див. `home.css`).
 - Пропорції картинок: `aspect-cover`, `aspect-portrait`, `aspect-ribbon`, `aspect-logo`.
 - Заборонено: hex і rgb у компонентах, стандартні класи Tailwind поза системою (`bg-blue-600`, `text-sm`, `text-white`), значення в квадратних дужках. Невідомий клас Tailwind мовчки не працює.
 - Рішення щодо контрасту: ліній між пунктами мобільного меню немає, пункти розділяємо відступами з набору.
@@ -41,7 +41,7 @@
 Кожен компонент лежить у своїй теці `src/components/<Назва>/` разом з історією `<Назва>.stories.tsx` (одна історія, Controls, Docs). Докладний опис, параметри й приклад: Storybook, розділ Components.
 
 - **Button** (`src/components/Button/Button.tsx`): кнопка. Параметри `variant` (`primary`, `secondary`), `size` (`md`, `lg`), `withArrow`, `disabled`, `disabledReason`. Ефекти (світло за курсором, підйом, натискання, стрілка) у `Button.css`. Вимкнена кнопка через `aria-disabled` з видимим поясненням.
-- **Header** (`src/components/Header/Header.tsx`): світла шапка (`paper`) на всю ширину, висота 96 px (вертикальні відступи 16 px): Logo ліворуч, Navigation праворуч, бічні поля `px-gutter`. Параметри `items`, `activeHref`, `actions`, `name`, `role`, `logoHref`. Шапка `relative`, щоб мобільне меню Navigation розкривалось на всю її ширину.
+- **Header** (`src/components/Header/Header.tsx`): світла шапка (`accent`) на всю ширину, висота 96 px (вертикальні відступи 16 px): Logo ліворуч, Navigation праворуч, бічні поля `px-gutter`. Параметри `items`, `activeHref`, `actions`, `name`, `role`, `logoHref`. Шапка `relative`, щоб мобільне меню Navigation розкривалось на всю її ширину.
 - **Logo** (`src/components/Logo/Logo.tsx`): логотип у світлій шапці, посилання на початок сторінки. Параметри `showName` (знак з іменем і роллю або лише знак), `name`, `role`, `href`, `label`. Знак VM з `src/assets/logo-vm.png`, пропорція `aspect-logo`, текст `canvas`.
 - **Navigation** (`src/components/Navigation/Navigation.tsx`): меню сайту. Параметри `items` (`label`, `href`), `activeHref` (отримує `aria-current="page"`), `actions` (кнопка, перемикач мови), `openLabel`, `closeLabel`. На вузькому екрані бургер (`aria-expanded`, `aria-controls`) з меню поверх контенту, закривається Escape, кліком на пункт і повторним натиском на бургер (фокус повертається на бургер). Як на мобільній версії старого сайту: бургер з косими рисками / хрестик, пункти курсивом із засічками без ліній, нижче ряд (кнопка ліворуч, мова праворуч, активна підкреслена), нижній правий кут меню зрізаний.
 - **LanguageSwitch** (`src/components/LanguageSwitch/LanguageSwitch.tsx`): перемикач мови EN / UA. Параметри `value` (`EN`, `UA`, активна мова з `aria-current="true"`), `onChange`, `label`, `englishLabel`, `ukrainianLabel`. Кожна мова це кнопка з доступною назвою. Компонент керований.
@@ -58,7 +58,7 @@
 - `src/content/home.ts`: тексти англійською (основна) і українською зі старого сайту. `src/content/useLanguage.ts`: вибір мови (localStorage, ключ `lang`), `html lang` оновлюється в `HomeScreen`.
 - `src/assets/`: `ribbon-vm.png` (стрічка), `status-dot.svg` (крапка статусу), `logo-vm.png` (знак у Logo). Картинки імпортуються в код, зовнішніх немає.
 - Розкладка: бічне поле `px-gutter`, відстань між текстом і стрічкою `gap-section` (від `xl`). До `lg` колонка зі стрічкою зверху, від `lg` текст ліворуч і стрічка праворуч, усе по центру по вертикалі. Заголовок починається з того самого поля, що й логотип.
-- Фон сторінки `canvas`, шапка `paper`. Розділи «роботи», «про мене», «контакти» ще не зроблені: кнопки й пункти меню ведуть до якорів `#work`, `#about`, `#contacts`.
+- Фон сторінки `canvas`, шапка `accent`. Розділи «роботи», «про мене», «контакти» ще не зроблені: кнопки й пункти меню ведуть до якорів `#work`, `#about`, `#contacts`.
 - Нові екрани й розділи додаємо за цією схемою: сторінка в `src/app`, тексти в `src/content`, картинки в `src/assets`, розкладка з токенів.
 
 ## Правила

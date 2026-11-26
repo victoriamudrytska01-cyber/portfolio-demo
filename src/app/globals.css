@@ -13,8 +13,6 @@
   --color-surface: #1a2024;
   --color-line: #2a3238;
   --color-accent: #f0e1d6;
-  /* Фон світлої шапки (bg-paper): колір --paper старого сайту, трохи світліший за accent (кнопка) */
-  --color-paper: #f2e8dd;
   --color-glow: #cba697;
   --color-ink: #f5e8de;
   --color-ink-muted: #b9afa5;
@@ -26,7 +24,12 @@
   --font-display: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
 
-  /* Розміри тексту: розмір, висота рядка, трекінг, жирність */
+  /*
+   * Розміри тексту: розмір, висота рядка, трекінг, жирність. Сім розмірів. Lead, heading і display
+   * плавні (clamp від ширини вікна, як на старому сайті): на 1920 px вони 22, 67 і 94 px, а на
+   * телефоні беруть мінімум (17, 48 і 72 px), який home.css зменшує для заголовка. Nav і small
+   * використовують по кілька компонентів (див. коментарі нижче).
+   */
   --text-*: initial;
   --text-caption: 0.8125rem;
   --text-caption--line-height: 1.4;
@@ -36,24 +39,19 @@
   --text-body--line-height: 1.5;
   --text-body--letter-spacing: 0;
   --text-body--font-weight: 400;
-  --text-lead: 1.375rem;
-  --text-lead--line-height: 1.4;
+  --text-lead: clamp(1.0625rem, 1.07vw, 1.375rem);
+  --text-lead--line-height: 1.27;
   --text-lead--letter-spacing: 0;
   --text-lead--font-weight: 400;
-  --text-heading: 3rem;
-  --text-heading--line-height: 1.3;
+  --text-heading: clamp(3rem, 3.466vw, 4.25rem);
+  --text-heading--line-height: 1.336;
   --text-heading--letter-spacing: 0;
   --text-heading--font-weight: 400;
-  --text-display: 4.5rem;
-  --text-display--line-height: 1;
+  --text-display: clamp(4.5rem, 4.92vw, 5.9375rem);
+  --text-display--line-height: 1.37;
   --text-display--letter-spacing: 0;
   --text-display--font-weight: 800;
 
-  /*
-   * Шкала першого екрана на широкому екрані (від md): розміри старого сайту, що росли разом
-   * з шириною вікна. Плавні (clamp від vw): на 1710 px це 84, 59 і 18 px, на 1920 px 94, 66 і 21 px.
-   * На телефоні заголовок бере зменшені розміри text-display і text-heading (див. home.css).
-   */
   /* Пункти меню й перемикач мови в шапці на широкому екрані (text-nav): 16 px */
   --text-nav: 1rem;
   --text-nav--line-height: 1.4;
@@ -64,28 +62,7 @@
   --text-small--line-height: 1.4;
   --text-small--letter-spacing: 0;
   --text-small--font-weight: 400;
-  /* Ім'я й роль у Logo на широкому екрані (text-brand 20 px, text-brand-role 12 px) */
-  --text-brand: 1.25rem;
-  --text-brand--line-height: 1.4;
-  --text-brand--letter-spacing: 0;
-  --text-brand--font-weight: 400;
-  --text-brand-role: 0.75rem;
-  --text-brand-role--line-height: 1.4;
-  --text-brand-role--letter-spacing: 0;
-  --text-brand-role--font-weight: 400;
 
-  --text-hero-display: clamp(4.5rem, 4.92vw, 5.9375rem);
-  --text-hero-display--line-height: 1.37;
-  --text-hero-display--letter-spacing: 0;
-  --text-hero-display--font-weight: 800;
-  --text-hero-italic: clamp(3rem, 3.466vw, 4.25rem);
-  --text-hero-italic--line-height: 1.336;
-  --text-hero-italic--letter-spacing: 0;
-  --text-hero-italic--font-weight: 400;
-  --text-hero-lead: clamp(1.0625rem, 1.07vw, 1.375rem);
-  --text-hero-lead--line-height: 1.27;
-  --text-hero-lead--letter-spacing: 0;
-  --text-hero-lead--font-weight: 400;
 
   /* Радіуси: кути прямі */
   --radius-*: initial;

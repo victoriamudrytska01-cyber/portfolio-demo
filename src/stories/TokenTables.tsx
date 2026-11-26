@@ -19,14 +19,9 @@ const steps = [
   { token: "text-lead", sample: "text-lead font-sans" },
   { token: "text-heading", sample: "text-heading font-serif italic" },
   { token: "text-display", sample: "text-display font-display" },
-  // Розміри першого екрана й шапки на широкому екрані: плавні, значення залежать від ширини вікна.
+  // Nav і small використовують кілька компонентів. Lead, heading і display плавні: розмір залежить від ширини вікна.
   { token: "text-nav", sample: "text-nav font-sans" },
   { token: "text-small", sample: "text-small font-sans" },
-  { token: "text-brand", sample: "text-brand font-serif font-bold" },
-  { token: "text-brand-role", sample: "text-brand-role font-sans" },
-  { token: "text-hero-lead", sample: "text-hero-lead font-sans" },
-  { token: "text-hero-italic", sample: "text-hero-italic font-serif italic" },
-  { token: "text-hero-display", sample: "text-hero-display font-display" },
 ];
 
 type Metrics = { size: string; lineHeight: string; tracking: string; weight: string };
@@ -97,7 +92,6 @@ const pairs: Pair[] = [
   { fg: "canvas", bg: "accent", kind: "text" },
   { fg: "accent", bg: "canvas", kind: "text" },
   { fg: "canvas", bg: "glow", kind: "text" },
-  { fg: "canvas", bg: "paper", kind: "text" },
   { fg: "danger", bg: "canvas", kind: "text" },
   { fg: "danger", bg: "surface", kind: "text" },
   { fg: "ink-muted", bg: "surface", kind: "text" },

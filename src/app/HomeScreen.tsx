@@ -64,14 +64,14 @@ export function HomeScreen() {
 
         <div className="hero__copy flex flex-col items-start lg:shrink-0">
           <h1 className="flex flex-col font-normal">
-            <span className="hero__strong font-display text-display text-ink md:text-hero-display">{t.title}</span>
-            <span className="hero__italic font-serif text-heading italic text-ink md:text-hero-italic">
+            <span className="hero__strong font-display text-display text-ink">{t.title}</span>
+            <span className="hero__italic font-serif text-heading italic text-ink">
               {t.italic.map((line) => (
                 <span key={line}>{line}</span>
               ))}
             </span>
           </h1>
-          <p className="hero__lead mt-6 font-sans text-body text-ink-muted md:text-hero-lead">{t.lead}</p>
+          <p className="hero__lead mt-6 font-sans text-body text-ink-muted md:text-lead">{t.lead}</p>
           <div className="hero__cta mt-8 md:mt-stack">
             <Button variant="primary" size="lg" withArrow onClick={goTo("#work")}>
               {t.cta}
