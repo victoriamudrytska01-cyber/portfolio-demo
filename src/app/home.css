@@ -122,3 +122,10 @@
     animation: none;
   }
 }
+
+/* Крапка статусу: форма з assets/status-dot.svg, колір з токена accent (bg-accent). */
+.hero__dot {
+  flex: none;
+  -webkit-mask: var(--dot-url) center / contain no-repeat;
+  mask: var(--dot-url) center / contain no-repeat;
+}

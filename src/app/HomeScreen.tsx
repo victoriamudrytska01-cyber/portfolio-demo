@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, type CSSProperties } from "react";
 import dot from "@/assets/status-dot.svg";
 import ribbon from "@/assets/ribbon-vm.png";
 import { Button } from "@/components/Button/Button";
@@ -78,7 +78,12 @@ export function HomeScreen() {
             </Button>
           </div>
           <p className="mt-8 flex items-center gap-3 font-sans text-caption text-ink-muted md:mt-stack md:text-small">
-            <Image src={dot} alt="" className="size-3" />
+            {/* Крапка з assets як маска: колір дає токен accent, а не файл SVG. */}
+            <span
+              aria-hidden="true"
+              className="hero__dot size-3 bg-accent"
+              style={{ "--dot-url": `url(${dot.src})` } as CSSProperties}
+            />
             {t.status}
           </p>
         </div>
