@@ -35,6 +35,9 @@ const focusRing =
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-canvas";
 
 const linkBase = `rounded-control px-3 py-2 font-sans text-body underline underline-offset-4 transition ${focusRing}`;
+// Пункти відкритого меню на вузькому екрані: великий курсив із засічками (розмір з токена
+// text-heading, підлаштований під екран у Navigation.css).
+const panelLinkBase = `nav-panel__link block rounded-control py-4 font-serif italic text-heading underline underline-offset-4 transition ${focusRing}`;
 const linkActive = "text-canvas decoration-current";
 const linkIdle = "text-canvas decoration-transparent hover:decoration-current";
 
@@ -82,7 +85,7 @@ export function Navigation({
     }
   };
 
-  const renderLinks = (onNavigate?: () => void, extra = "") =>
+  const renderLinks = (panel = false) =>
     items.map((item) => {
       const isActive = item.href === activeHref;
       return (
@@ -90,8 +93,7 @@ export function Navigation({
           <a
             href={item.href}
             aria-current={isActive ? "page" : undefined}
-            onClick={onNavigate}
-            className={[linkBase, isActive ? linkActive : linkIdle, extra].filter(Boolean).join(" ")}
+            className={[panel ? panelLinkBase : linkBase, isActive ? linkActive : linkIdle].join(" ")}
           >
             {item.label}
           </a>
@@ -120,30 +122,38 @@ export function Navigation({
         aria-controls={menuId}
         aria-label={open ? closeLabel : openLabel}
         onClick={handleBurgerClick}
-        className={`inline-flex items-center justify-center rounded-control p-3 text-canvas transition hover:bg-glow md:hidden ${focusRing}`}
+        className={`nav-burger inline-flex items-center justify-center rounded-control text-canvas transition hover:bg-glow md:hidden ${focusRing}`}
       >
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          className="size-6"
-        >
-          {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+        {/* Іконка зі старого сайту: три косі риски, а коли меню відкрите, хрестик. */}
+        <svg aria-hidden="true" viewBox="0 0 36 24" fill="currentColor" className="h-6 w-auto">
+          {open ? (
+            <>
+              <polygon points="4,14 8,10 32,10 28,14" transform="rotate(45 18 12)" />
+              <polygon points="4,14 8,10 32,10 28,14" transform="rotate(-45 18 12)" />
+            </>
+          ) : (
+            <>
+              <polygon points="6,2 34,2 30,6 2,6" />
+              <polygon points="2,6 6,2 11,2 7,6" className="fill-accent opacity-60" />
+              <polygon points="19,10 34,10 30,14 15,14" />
+              <polygon points="6,18 34,18 30,22 2,22" />
+            </>
+          )}
         </svg>
       </button>
 
       {/* Відкрите меню лежить поверх контенту (absolute), сторінку вниз не зсуває. Пункти розділені лише відступами. */}
       <div
         id={menuId}
-        className={`${open ? "flex" : "hidden"} nav-panel absolute top-full z-10 flex-col gap-6 border-y border-canvas bg-accent px-8 py-6 md:hidden`}
+        className={`${open ? "flex" : "hidden"} nav-panel absolute top-full z-10 flex-col gap-6 bg-accent px-4 pb-6 pt-4 md:hidden`}
       >
-        <ul className="flex flex-col gap-4" onClick={handlePanelClick}>
-          {renderLinks(undefined, "block font-serif italic text-lead")}
+        <ul className="flex flex-col" onClick={handlePanelClick}>
+          {renderLinks(true)}
         </ul>
-        {actions && <div className="flex flex-col items-start gap-4">{actions}</div>}
+        {/* В одному ряду: ліворуч кнопка, праворуч перемикач мови (порядок обернено відносно широкого екрана). */}
+        {actions && (
+          <div className="flex flex-row-reverse items-center justify-between gap-4">{actions}</div>
+        )}
       </div>
     </nav>
   );
