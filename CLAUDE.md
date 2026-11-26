@@ -34,6 +34,7 @@
 
 - **Button** (`src/components/Button/Button.tsx`): кнопка. Параметри `variant` (`primary`, `secondary`), `size` (`md`, `lg`), `withArrow`, `disabled`, `disabledReason`. Ефекти (світло за курсором, підйом, натискання, стрілка) у `Button.css`. Вимкнена кнопка через `aria-disabled` з видимим поясненням.
 - **Navigation** (`src/components/Navigation/Navigation.tsx`): меню сайту. Параметри `items` (`label`, `href`), `activeHref` (отримує `aria-current="page"`), `actions` (кнопка, перемикач мови), `openLabel`, `closeLabel`. На вузькому екрані бургер (`aria-expanded`, `aria-controls`) з меню поверх контенту, закривається Escape, пункти без ліній, лише відступи.
+- **LanguageSwitch** (`src/components/LanguageSwitch/LanguageSwitch.tsx`): перемикач мови EN / UA. Параметри `value` (`EN`, `UA`, активна мова з `aria-current="true"`), `onChange`, `label`, `englishLabel`, `ukrainianLabel`. Кожна мова це кнопка з доступною назвою. Компонент керований.
 - **WorkCard** (`src/components/WorkCard/WorkCard.tsx`): картка роботи, уся є посиланням. Параметри `title`, `description`, `href`, `image` (картинка з `src/assets`, імпортована в код), `imageAlt`. Обкладинка `aspect-cover`, кути `rounded-card`.
 - **FormField** (`src/components/FormField/FormField.tsx`): текстове поле з підписом над ним. Параметри `label`, `id`, `invalid`, `errorMessage`, `disabled`, `disabledReason`, решта атрибутів `input`. Підпис зв'язаний через `htmlFor`/`id`, помилка через `aria-invalid` і `aria-describedby`, вимкнене поле через `aria-disabled` з видимим поясненням.
 
