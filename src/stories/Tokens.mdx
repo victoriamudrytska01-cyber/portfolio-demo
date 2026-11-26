@@ -1,4 +1,4 @@
-import { Meta, ColorPalette, ColorItem, Typeset } from "@storybook/addon-docs/blocks";
+import { Meta, ColorPalette, ColorItem } from "@storybook/addon-docs/blocks";
 
 import { fontVariables } from "../app/fonts";
 
@@ -41,15 +41,6 @@ export const fv = fontVariables;
 Межа поля форми й кнопки без заливки: `ink-muted`, не `line`.
 
 ## Шрифти
-
-<div className={fv}>
-<Typeset
-  fontFamily="var(--font-onest)"
-  fontSizes={["var(--text-caption)", "var(--text-body)", "var(--text-lead)"]}
-  fontWeight={400}
-  sampleText="Проєктую мобільні застосунки й сайти. I design mobile apps and websites."
-/>
-</div>
 
 <div className={fv + " sb-unstyled bg-canvas text-ink p-8 flex flex-col gap-6"}>
   <div className="font-sans text-caption text-ink-muted">font-sans (Onest) · text-caption</div>
