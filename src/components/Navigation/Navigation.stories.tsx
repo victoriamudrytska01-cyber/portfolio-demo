@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { useState } from "react";
 import { Button } from "../Button/Button";
+import { Header } from "../Header/Header";
 import { LanguageSwitch, type Language } from "../LanguageSwitch/LanguageSwitch";
 import { Navigation } from "./Navigation";
 
@@ -26,21 +27,22 @@ const meta = {
   component: Navigation,
   tags: ["autodocs"],
   decorators: [
-    // Шапка сайту світла: показуємо навігацію на фоні accent. Вертикальні відступи 24 px
-    // (крок 6) дають смужку заввишки близько 96 px, як на старому сайті.
+    // Під світлою шапкою (accent) темна сторінка (canvas), як на сайті.
     (Story) => (
-      <div className="relative w-full bg-accent px-8 py-6">
+      <div className="bg-canvas">
         <Story />
       </div>
     ),
   ],
   parameters: {
-    // Навігація займає всю ширину шапки: без цього в центрованому макеті вона стискається до розміру бургера.
+    // Шапка займає всю ширину сторінки.
     layout: "fullscreen",
     docs: {
       description: {
         component: `
-Меню сайту: «My work», «About me» і додаткові елементи (кнопка «Get in touch», перемикач мови). На широкому екрані пункти йдуть у рядок, на вузькому меню згортається в кнопку-бургер, а відкрите меню лежить поверх контенту й не зсуває сторінку вниз.
+Меню сайту: «My work», «About me» і додаткові елементи (перемикач мови, кнопка «Get in touch»). На широкому екрані пункти йдуть у рядок, на вузькому меню згортається в кнопку-бургер, а відкрите меню лежить поверх контенту й не зсуває сторінку вниз.
+
+Історія показує навігацію в складі шапки, як на старому сайті: смужка на всю ширину (заливка \`accent\`, висота 96 px, вертикальні відступи 16 px, вміст по краях за токеном \`content\`), ліворуч логотип (компонент Logo), праворуч в один ряд пункти меню, перемикач мови (LanguageSwitch) і кнопка «Get in touch» (Button \`secondary\`). Усе по центру по вертикалі. Мобільну версію дивіться через Viewport.
 
 ### Параметри
 
@@ -61,7 +63,7 @@ const meta = {
 - **Hover**: з'являється підкреслення.
 - **Focus** (клавіатура): контур \`canvas\` із відступом.
 - **Активний пункт** (\`aria-current="page"\`): текст \`canvas\` і постійне підкреслення. У Storybook перемикається в Controls.
-- **Вузький екран** (до ширини \`md\`): пункти ховаються, з'являється кнопка-бургер з \`aria-expanded\`, \`aria-controls\` і доступною назвою (змінюється, коли меню відкрите). Відкрите меню лежить поверх контенту на заливці \`accent\` з межею \`canvas\`, на всю ширину шапки (воно позиціонується від найближчого предка з \`relative\`, тому шапка має бути \`relative\`), пункти розділені лише відступами, без ліній. Меню закривається клавішею Escape (фокус повертається на бургер) і після вибору пункту.
+- **Вузький екран** (до ширини \`md\`): ліворуч логотип, праворуч кнопка-бургер з \`aria-expanded\`, \`aria-controls\` і доступною назвою («Відкрити меню» і «Закрити меню» в історії). Іконка бургера змінюється на хрестик, коли меню відкрите, видимий контур \`canvas\` при фокусі з клавіатури. Відкрите меню лежить поверх контенту (сторінку вниз не зсуває) на всю ширину шапки, заливка \`accent\`, текст \`canvas\`. Воно позиціонується від найближчого предка з \`relative\`, тому шапка має бути \`relative\`. Зверху вниз: пункти меню, перемикач мови, кнопка «Get in touch». Пункти розділені лише відступами, без ліній. Меню закривається клавішею Escape, кліком на пункт і повторним натиском на бургер, фокус повертається на бургер.
 - Перевірити вузький екран у Storybook можна через Viewport у панелі інструментів.
 
 ### Токени
@@ -114,10 +116,24 @@ import { Navigation } from "@/components/Navigation/Navigation";
     items,
     activeHref: "#work",
     actions: <NavigationActions />,
+    openLabel: "Відкрити меню",
+    closeLabel: "Закрити меню",
   },
 } satisfies Meta<typeof Navigation>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Playground: Story = {};
+// Навігація показана в складі шапки: логотип ліворуч, меню праворуч.
+export const Playground: Story = {
+  render: ({ items, activeHref, actions, openLabel, closeLabel }) => (
+    <Header
+      items={items}
+      activeHref={activeHref}
+      actions={actions}
+      openLabel={openLabel}
+      closeLabel={closeLabel}
+      logoHref="#top"
+    />
+  ),
+};

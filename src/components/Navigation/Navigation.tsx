@@ -1,6 +1,14 @@
 "use client";
 
-import { useEffect, useId, useRef, useState, type ComponentProps, type ReactNode } from "react";
+import {
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type ComponentProps,
+  type MouseEvent,
+  type ReactNode,
+} from "react";
 import "./Navigation.css";
 
 export type NavigationItem = {
@@ -60,6 +68,20 @@ export function Navigation({
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [open]);
 
+  // Бургер відкриває й закриває меню та лишає фокус на собі (Safari сам не фокусує кнопку при кліку).
+  const handleBurgerClick = () => {
+    setOpen((value) => !value);
+    burgerRef.current?.focus();
+  };
+
+  // Вибір пункту в меню закриває його й повертає фокус на бургер (одна подія на весь список).
+  const handlePanelClick = (event: MouseEvent<HTMLUListElement>) => {
+    if ((event.target as HTMLElement).closest("a")) {
+      setOpen(false);
+      burgerRef.current?.focus();
+    }
+  };
+
   const renderLinks = (onNavigate?: () => void, extra = "") =>
     items.map((item) => {
       const isActive = item.href === activeHref;
@@ -97,7 +119,7 @@ export function Navigation({
         aria-expanded={open}
         aria-controls={menuId}
         aria-label={open ? closeLabel : openLabel}
-        onClick={() => setOpen((value) => !value)}
+        onClick={handleBurgerClick}
         className={`inline-flex items-center justify-center rounded-control p-3 text-canvas transition hover:bg-glow md:hidden ${focusRing}`}
       >
         <svg
@@ -118,10 +140,10 @@ export function Navigation({
         id={menuId}
         className={`${open ? "flex" : "hidden"} nav-panel absolute top-full z-10 flex-col gap-6 border-y border-canvas bg-accent px-8 py-6 md:hidden`}
       >
-        <ul className="flex flex-col gap-4">
-          {renderLinks(() => setOpen(false), "block font-serif italic text-lead")}
+        <ul className="flex flex-col gap-4" onClick={handlePanelClick}>
+          {renderLinks(undefined, "block font-serif italic text-lead")}
         </ul>
-        {actions && <div className="flex items-center gap-6">{actions}</div>}
+        {actions && <div className="flex flex-col items-start gap-4">{actions}</div>}
       </div>
     </nav>
   );

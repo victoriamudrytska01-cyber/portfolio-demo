@@ -1,4 +1,5 @@
 import type { ComponentProps, ReactNode } from "react";
+import "./Header.css";
 import { Logo } from "../Logo/Logo";
 import { Navigation, type NavigationItem } from "../Navigation/Navigation";
 
@@ -43,7 +44,7 @@ export function Header({
   return (
     // relative потрібен, щоб відкрите меню на вузькому екрані розкривалось на всю ширину шапки.
     <header {...props} className={["relative w-full bg-accent", className].filter(Boolean).join(" ")}>
-      <div className="mx-auto flex max-w-content items-center justify-between gap-4 px-4 py-6 md:gap-6 md:px-8">
+      <div className="header__row mx-auto flex max-w-content items-center justify-between gap-4 px-4 py-4 md:gap-6 md:px-8">
         <Logo name={name} role={role} href={logoHref} />
         <Navigation
           aria-label={navigationLabel}
