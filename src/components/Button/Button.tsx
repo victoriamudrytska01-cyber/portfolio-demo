@@ -29,11 +29,6 @@ const sizes = {
   lg: "btn-fx--lg px-8 py-4 text-body",
 } as const;
 
-const arrowBase = "btn-fx__arrow transition duration-300 ease-out motion-reduce:transition-none";
-const arrowIdle = "opacity-0 -translate-x-2";
-const arrowActive =
-  "group-hover:opacity-100 group-hover:translate-none group-focus-visible:opacity-100 group-focus-visible:translate-none";
-
 /**
  * Кнопка дизайн-системи. Докладний опис, варіанти й приклад: вкладка Docs у Storybook.
  */
@@ -81,23 +76,24 @@ export function Button({
         onMouseMove={handleMouseMove}
         className={[base, variants[variant], sizes[size], className].filter(Boolean).join(" ")}
       >
-        {/* Порожнє місце зліва такої ж ширини, як стрілка з відступом: текст лишається по центру. */}
-        {withArrow && <span aria-hidden="true" className="btn-fx__spacer" />}
-        {children}
-        {withArrow && (
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 22 12"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.6"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className={[arrowBase, disabled ? arrowIdle : `${arrowIdle} ${arrowActive}`].join(" ")}
-          >
-            <path d="M1 6h19M15 1.5 20 6l-5 4.5" />
-          </svg>
-        )}
+        {/* Стрілка стоїть всередині мітки й не займає місця: у спокої текст по центру. */}
+        <span className={withArrow ? "btn-fx__label btn-fx__label--arrow" : "btn-fx__label"}>
+          {children}
+          {withArrow && (
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 22 12"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="btn-fx__arrow"
+            >
+              <path d="M1 6h19M15 1.5 20 6l-5 4.5" />
+            </svg>
+          )}
+        </span>
       </button>
       {disabled && (
         <span id={reasonId} className="font-sans text-caption text-ink-muted">

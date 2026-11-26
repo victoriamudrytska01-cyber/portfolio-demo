@@ -22,20 +22,46 @@
 }
 
 /*
- * Стрілка як на старому сайті: пропорції 22 до 12 (висота крок 3, ширина висота * 22 / 12)
- * і відступ від тексту крок 2. Місце під неї зарезервоване завжди, а такий самий
- * порожній проміжок ліворуч тримає текст по центру кнопки.
+ * Стрілка як на старому сайті: пропорції 22 до 12 (висота крок 3, ширина висота * 22 / 12),
+ * відступ від тексту крок 2. Вона позиціонується всередині мітки справа від тексту й не займає
+ * місця, тому у спокої текст стоїть точно по центру. При hover і focus-visible текст зсувається
+ * вліво на половину (стрілка + відступ), а стрілка з'являється: текст і стрілка разом
+ * лишаються по центру, ширина кнопки не змінюється.
  */
-.btn-fx__arrow {
-  flex: none;
-  width: calc(var(--spacing-3) * 22 / 12);
-  height: var(--spacing-3);
-  margin-left: var(--spacing-2);
+.btn-fx {
+  --arrow-w: calc(var(--spacing-3) * 22 / 12);
+  --arrow-gap: var(--spacing-2);
 }
 
-.btn-fx__spacer {
-  flex: none;
-  width: calc(var(--spacing-3) * 22 / 12 + var(--spacing-2));
+.btn-fx__label {
+  position: relative;
+  transition: translate 0.3s ease-out;
+}
+
+.btn-fx__arrow {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  bottom: 0;
+  margin-block: auto;
+  margin-left: var(--arrow-gap);
+  width: var(--arrow-w);
+  height: var(--spacing-3);
+  opacity: 0;
+  translate: calc(var(--spacing-2) * -1) 0;
+  pointer-events: none;
+  transition:
+    opacity 0.3s ease-out,
+    translate 0.3s ease-out;
+}
+
+.btn-fx:not([aria-disabled="true"]):focus-visible .btn-fx__label--arrow {
+  translate: calc((var(--arrow-w) + var(--arrow-gap)) / -2) 0;
+}
+
+.btn-fx:not([aria-disabled="true"]):focus-visible .btn-fx__arrow {
+  opacity: 1;
+  translate: none;
 }
 
 .btn-fx--primary {
@@ -84,6 +110,15 @@
     opacity: 1;
   }
 
+  .btn-fx:not([aria-disabled="true"]):hover .btn-fx__label--arrow {
+    translate: calc((var(--arrow-w) + var(--arrow-gap)) / -2) 0;
+  }
+
+  .btn-fx:not([aria-disabled="true"]):hover .btn-fx__arrow {
+    opacity: 1;
+    translate: none;
+  }
+
   .btn-fx:not([aria-disabled="true"]):hover {
     translate: 0 calc(var(--spacing-2) / -4);
     box-shadow: 0 var(--spacing-2) var(--spacing-6) var(--btn-halo);
@@ -121,6 +156,17 @@
   }
 
   .btn-fx::before {
+    transition: opacity 0.3s ease-out;
+  }
+
+  /* Текст не зсувається, стрілка з'являється на місці без руху. */
+  .btn-fx .btn-fx__label {
+    translate: none !important;
+    transition: none;
+  }
+
+  .btn-fx .btn-fx__arrow {
+    translate: none !important;
     transition: opacity 0.3s ease-out;
   }
 }
