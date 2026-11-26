@@ -26,9 +26,10 @@ const meta = {
   component: Navigation,
   tags: ["autodocs"],
   decorators: [
-    // Шапка сайту світла: показуємо навігацію на фоні accent.
+    // Шапка сайту світла: показуємо навігацію на фоні accent. Вертикальні відступи 24 px
+    // (крок 6) дають смужку заввишки близько 96 px, як на старому сайті.
     (Story) => (
-      <div className="w-full bg-accent p-8">
+      <div className="w-full bg-accent px-8 py-6">
         <Story />
       </div>
     ),
