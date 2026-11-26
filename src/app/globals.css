@@ -1,6 +1,78 @@
 @import "tailwindcss";
 
 /*
- * Дизайн-токени додаємо тут (у @theme) на наступному кроці.
- * Стартові змінні create-next-app, темна тема за медіазапитом і Geist прибрані.
+ * Дизайн-токени. Єдине джерело значень: hex, px і rem живуть тільки тут.
+ * `static` лишає всі змінні в :root, навіть невикористані (Storybook читає їх як var(--color-*)).
+ * `inline` підставляє значення прямо в класи: шрифти беруть змінні next/font там, де стоїть елемент (на <html> у сайті, на обгортці в Storybook).
+ * `*: initial` скидає стандартні значення Tailwind, тож класи поза системою не працюють.
  */
+@theme static inline {
+  /* Кольори */
+  --color-*: initial;
+  --color-canvas: #111518;
+  --color-surface: #1a2024;
+  --color-line: #2a3238;
+  --color-accent: #f0e1d6;
+  --color-ink: #f5e8de;
+  --color-ink-muted: #b9afa5;
+  --color-danger: #ff6078;
+
+  /* Шрифти (змінні --font-onest, --font-manrope, --font-playfair задає src/app/fonts.ts) */
+  --font-*: initial;
+  --font-sans: var(--font-onest), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
+
+  /* Розміри тексту: розмір, висота рядка, трекінг, жирність */
+  --text-*: initial;
+  --text-caption: 0.8125rem;
+  --text-caption--line-height: 1.4;
+  --text-caption--letter-spacing: 0.01em;
+  --text-caption--font-weight: 400;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.5;
+  --text-body--letter-spacing: 0;
+  --text-body--font-weight: 400;
+  --text-lead: 1.375rem;
+  --text-lead--line-height: 1.4;
+  --text-lead--letter-spacing: 0;
+  --text-lead--font-weight: 400;
+  --text-heading: 3rem;
+  --text-heading--line-height: 1.3;
+  --text-heading--letter-spacing: 0;
+  --text-heading--font-weight: 400;
+  --text-display: 4.5rem;
+  --text-display--line-height: 1;
+  --text-display--letter-spacing: 0;
+  --text-display--font-weight: 800;
+
+  /* Радіуси: кути прямі */
+  --radius-*: initial;
+  --radius-control: 0;
+  --radius-card: 0;
+
+  /* Відступи: тільки 8, 12, 16, 24, 32 px (класи 2, 3, 4, 6, 8) і відстань між секціями */
+  --spacing-*: initial;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-section: 6rem;
+
+  /* Ширина контенту (max-w-content) */
+  --container-*: initial;
+  --container-content: 80rem;
+
+  /* Пропорції картинок */
+  --aspect-cover: 3 / 2;
+  --aspect-portrait: 4 / 5;
+  --aspect-ribbon: 728 / 465;
+  --aspect-logo: 67 / 42;
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}

@@ -1,0 +1,107 @@
+import { Meta, ColorPalette, ColorItem, Typeset } from "@storybook/addon-docs/blocks";
+
+import { fontVariables } from "../app/fonts";
+
+export const fv = fontVariables;
+
+<Meta title="Foundations/Tokens" />
+
+# Tokens
+
+Усі значення живуть в одному місці: блок `@theme` у `src/app/globals.css`. Тут вони показані живими змінними, значень у цьому файлі немає. Змінили токен: сторінка оновилась сама.
+
+## Кольори
+
+<ColorPalette>
+  <ColorItem
+    title="Фон і поверхні"
+    subtitle="canvas, surface, line"
+    colors={{
+      canvas: "var(--color-canvas)",
+      surface: "var(--color-surface)",
+      line: "var(--color-line)",
+    }}
+  />
+  <ColorItem
+    title="Акцент і текст"
+    subtitle="accent, ink, ink-muted"
+    colors={{
+      accent: "var(--color-accent)",
+      ink: "var(--color-ink)",
+      "ink-muted": "var(--color-ink-muted)",
+    }}
+  />
+  <ColorItem
+    title="Помилка"
+    subtitle="danger: текст помилки й межа поля"
+    colors={{ danger: "var(--color-danger)" }}
+  />
+</ColorPalette>
+
+Межа поля форми й кнопки без заливки: `ink-muted`, не `line`.
+
+## Шрифти
+
+<div className={fv}>
+<Typeset
+  fontFamily="var(--font-onest)"
+  fontSizes={["var(--text-caption)", "var(--text-body)", "var(--text-lead)"]}
+  fontWeight={400}
+  sampleText="Проєктую мобільні застосунки й сайти. I design mobile apps and websites."
+/>
+</div>
+
+<div className={fv + " sb-unstyled bg-canvas text-ink p-8 flex flex-col gap-6"}>
+  <div className="font-sans text-caption text-ink-muted">font-sans (Onest) · text-caption</div>
+  <div className="font-sans text-body">text-body: Проєктую мобільні застосунки й сайти. I design mobile apps and websites.</div>
+  <div className="font-sans text-lead">text-lead: Для компаній, чиї користувачі йдуть від вибору до результату.</div>
+  <div className="font-serif italic text-heading">text-heading, font-serif italic: сайти, де шлях легко пройти</div>
+  <div className="font-display text-display">text-display: Створюю</div>
+  <div className="font-sans text-caption text-ink-muted">Розмір, висота рядка, трекінг і жирність кожного кроку задані парами в @theme.</div>
+</div>
+
+## Радіуси
+
+Кути на сайті прямі: обидва радіуси дорівнюють нулю. Класи лишаються, щоб згодом змінити кути в одному місці.
+
+<div className={fv + " sb-unstyled bg-canvas text-ink p-8 flex flex-wrap gap-8"}>
+  <div className="flex flex-col gap-3">
+    <div className="rounded-control size-8 border border-ink-muted" />
+    <div className="font-sans text-caption">rounded-control</div>
+  </div>
+  <div className="flex flex-col gap-3">
+    <div className="rounded-card w-full h-8 border border-line bg-surface" />
+    <div className="font-sans text-caption">rounded-card</div>
+  </div>
+</div>
+
+## Відступи
+
+Дозволені тільки п'ять кроків: класи 2, 3, 4, 6 і 8. Відстань між секціями й ширина контенту мають власні токени.
+
+<div className={fv + " sb-unstyled bg-canvas text-ink p-8 flex flex-col gap-4"}>
+  <div className="flex items-end gap-6">
+    <div className="flex flex-col gap-2"><div className="bg-accent size-2" /><div className="font-sans text-caption">2</div></div>
+    <div className="flex flex-col gap-2"><div className="bg-accent size-3" /><div className="font-sans text-caption">3</div></div>
+    <div className="flex flex-col gap-2"><div className="bg-accent size-4" /><div className="font-sans text-caption">4</div></div>
+    <div className="flex flex-col gap-2"><div className="bg-accent size-6" /><div className="font-sans text-caption">6</div></div>
+    <div className="flex flex-col gap-2"><div className="bg-accent size-8" /><div className="font-sans text-caption">8</div></div>
+  </div>
+  <div className="flex flex-col gap-2">
+    <div className="bg-surface border border-line h-section" />
+    <div className="font-sans text-caption">section: відстань між великими секціями (h-section)</div>
+  </div>
+  <div className="flex flex-col gap-2">
+    <div className="bg-surface border border-line h-6 w-full max-w-content" />
+    <div className="font-sans text-caption">content: найбільша ширина контенту (max-w-content)</div>
+  </div>
+</div>
+
+## Пропорції картинок
+
+<div className={fv + " sb-unstyled bg-canvas text-ink p-8 grid grid-cols-2 items-end gap-8"}>
+  <div className="flex flex-col gap-2"><div className="aspect-cover w-full bg-surface border border-line" /><div className="font-sans text-caption">aspect-cover: обкладинка кейсу</div></div>
+  <div className="flex flex-col gap-2"><div className="aspect-portrait w-1/2 bg-surface border border-line" /><div className="font-sans text-caption">aspect-portrait: портрет</div></div>
+  <div className="flex flex-col gap-2"><div className="aspect-ribbon w-full bg-surface border border-line" /><div className="font-sans text-caption">aspect-ribbon: стрічка VM</div></div>
+  <div className="flex flex-col gap-2"><div className="aspect-logo w-1/2 bg-surface border border-line" /><div className="font-sans text-caption">aspect-logo: логотип</div></div>
+</div>

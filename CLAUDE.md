@@ -16,7 +16,16 @@
 
 ## Токени
 
-Заповнимо далі.
+Єдине джерело значень: блок `@theme` у `src/app/globals.css`. Hex, px і rem пишемо тільки там. Перегляд: Storybook, сторінка Foundations/Tokens (`npm run storybook`).
+
+- Кольори: `canvas`, `surface`, `line`, `accent`, `ink`, `ink-muted`, `danger`. Межа поля форми й кнопки без заливки: `ink-muted`, не `line`.
+- Радіуси: `rounded-control`, `rounded-card` (обидва 0, кути прямі).
+- Розміри тексту: `text-caption`, `text-body`, `text-lead`, `text-heading`, `text-display`. Висота рядка, трекінг і жирність задані парами в `@theme`.
+- Шрифти: `font-sans` (Onest), `font-display` (Manrope 800), `font-serif` (Playfair Display). Підключені в `src/app/fonts.ts` з кирилицею.
+- Відступи: тільки 8, 12, 16, 24, 32 px (числа 2, 3, 4, 6, 8 у класах), плюс `section` (відстань між великими секціями) і `max-w-content` (ширина контенту).
+- Пропорції картинок: `aspect-cover`, `aspect-portrait`, `aspect-ribbon`, `aspect-logo`.
+- Заборонено: hex і rgb у компонентах, стандартні класи Tailwind поза системою (`bg-blue-600`, `text-sm`, `text-white`), значення в квадратних дужках. Невідомий клас Tailwind мовчки не працює.
+- Рішення щодо контрасту: ліній між пунктами мобільного меню немає, пункти розділяємо відступами з набору.
 
 ## Компоненти
 
