@@ -72,8 +72,10 @@
 }
 
 .btn-fx--secondary {
-  /* Кнопка "Get in touch": тепле світло з токена glow, коло вдвічі менше, ніж у primary. */
-  --btn-halo: color-mix(in srgb, var(--color-ink-muted) 25%, transparent);
+  /* Кнопка "Get in touch": темна заливка canvas на світлому фоні, без помітної рамки.
+     Тінь під кнопкою з canvas, світло з токена glow, коло вдвічі менше, ніж у primary. */
+  --btn-halo: color-mix(in srgb, var(--color-canvas) 28%, transparent);
+  --btn-blur: calc(var(--spacing-6) * 3 / 4);
   --btn-press: color-mix(in srgb, var(--color-ink-muted) 20%, transparent);
 }
 
@@ -104,14 +106,14 @@
 }
 
 /*
- * Світло secondary: радіус 60 px (2,5 кроки відступу 6, половина від primary), центр glow
- * з 35% непрозорості, до середини 8%, до краю зникає. Текст ink у центрі: 7,39:1.
+ * Світло secondary: радіус 60 px (2,5 кроки відступу 6, половина від primary), м'яке тепле
+ * світло з glow: центр 55% без білого, до середини 12%, до краю зникає. Текст ink у центрі: 4,60:1.
  */
 .btn-fx--secondary::before {
   background: radial-gradient(
     circle calc(var(--spacing-6) * 2.5) at var(--mx) var(--my),
-    color-mix(in srgb, var(--color-glow) 35%, transparent) 0,
-    color-mix(in srgb, var(--color-glow) 8%, transparent) 55%,
+    color-mix(in srgb, var(--color-glow) 55%, transparent) 0,
+    color-mix(in srgb, var(--color-glow) 12%, transparent) 55%,
     transparent 100%
   );
 }
@@ -133,7 +135,7 @@
 
   .btn-fx:not([aria-disabled="true"]):hover {
     translate: 0 calc(var(--spacing-2) / -4);
-    box-shadow: 0 var(--spacing-2) var(--spacing-6) var(--btn-halo);
+    box-shadow: 0 var(--spacing-2) var(--btn-blur, var(--spacing-6)) var(--btn-halo);
   }
 }
 

@@ -70,7 +70,7 @@ import { Navigation } from "@/components/Navigation/Navigation";
     { label: "About me", href: "#about" },
   ]}
   activeHref="#work"
-  actions={<Button variant="secondary">Get in touch</Button>}
+  actions={<Button variant="primary">Get in touch</Button>}
 />
 \`\`\`
 `,
@@ -90,7 +90,7 @@ import { Navigation } from "@/components/Navigation/Navigation";
     "aria-label": "Main",
     items,
     activeHref: "#work",
-    actions: <Button variant="secondary">Get in touch</Button>,
+    actions: <Button variant="primary">Get in touch</Button>,
   },
 } satisfies Meta<typeof Navigation>;
 
