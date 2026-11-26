@@ -26,8 +26,8 @@ const variants = {
 } as const;
 
 const sizes = {
-  md: "px-8 py-3 text-body",
-  lg: "btn-fx--lg px-8 py-3 text-body",
+  md: "btn-fx--md px-8 py-3 text-body md:text-small",
+  lg: "btn-fx--lg px-8 py-3 text-body md:text-small",
 } as const;
 
 /**

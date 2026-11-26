@@ -59,7 +59,8 @@ export function LanguageSwitch({
           <button
             type="button"
             lang={language.lang}
-            aria-label={language.name}
+            // Доступна назва починається з видимого тексту («EN, English»): так вимагає WCAG 2.5.3 (label in name).
+            aria-label={`${language.code}, ${language.name}`}
             aria-current={value === language.code ? "true" : undefined}
             onClick={() => onChange?.(language.code)}
             className={[buttonBase, value === language.code ? buttonActive : buttonIdle].join(" ")}

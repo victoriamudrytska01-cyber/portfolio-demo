@@ -21,6 +21,9 @@ const steps = [
   { token: "text-display", sample: "text-display font-display" },
   // Розміри першого екрана й шапки на широкому екрані: плавні, значення залежать від ширини вікна.
   { token: "text-nav", sample: "text-nav font-sans" },
+  { token: "text-small", sample: "text-small font-sans" },
+  { token: "text-brand", sample: "text-brand font-serif font-bold" },
+  { token: "text-brand-role", sample: "text-brand-role font-sans" },
   { token: "text-hero-lead", sample: "text-hero-lead font-sans" },
   { token: "text-hero-italic", sample: "text-hero-italic font-serif italic" },
   { token: "text-hero-display", sample: "text-hero-display font-display" },

@@ -111,11 +111,11 @@ export const fv = fontVariables;
   </div>
   <div className="flex flex-col gap-2">
     <div className="bg-accent h-3 w-header" />
-    <div className="font-sans text-caption">header: висота шапки на широкому екрані (h-header), від 84 до 120 px залежно від висоти вікна</div>
+    <div className="font-sans text-caption">header: висота шапки на широкому екрані (h-header), 96 px на екрані заввишки 1000 px, від 84 до 120 px залежно від висоти вікна</div>
   </div>
   <div className="flex flex-col gap-2">
     <div className="bg-accent h-3 w-nav" />
-    <div className="font-sans text-caption">nav: проміжок між пунктами меню, перемикачем мови й кнопкою в шапці (gap-nav), від 28 до 56 px залежно від ширини екрана</div>
+    <div className="font-sans text-caption">nav: проміжок між пунктами меню, перемикачем мови й кнопкою в шапці (gap-nav), 56 px на екрані завширшки 1920 px, від 28 до 56 px залежно від ширини екрана</div>
   </div>
   <div className="flex flex-col gap-2">
     <div className="bg-accent h-3 w-stack" />
@@ -123,11 +123,15 @@ export const fv = fontVariables;
   </div>
   <div className="flex flex-col gap-2">
     <div className="bg-accent h-3 w-logo" />
-    <div className="font-sans text-caption">logo: ширина знака VM на широкому екрані (w-logo), 67 px</div>
+    <div className="font-sans text-caption">logo: ширина знака VM на широкому екрані (w-logo), 60 px</div>
   </div>
   <div className="flex flex-col gap-2">
     <div className="bg-accent h-3 w-button-lg" />
-    <div className="font-sans text-caption">button-lg і button-lg-h: мінімальна ширина й висота кнопки lg, на 1710 px це 249 на 52 px, на 1920 px 279 на 59 px</div>
+    <div className="font-sans text-caption">button-lg і button-lg-h: мінімальна ширина й висота кнопки lg, на екрані 1920 px завширшки це 300 на 59 px</div>
+  </div>
+  <div className="flex flex-col gap-2">
+    <div className="bg-accent h-3 w-button-md" />
+    <div className="font-sans text-caption">button-md і button-md-h: мінімальна ширина й висота кнопки md, на екрані 1920 px завширшки це 179 на 58 px</div>
   </div>
   <div className="flex flex-col gap-2">
     <div className="bg-surface border border-line h-6 w-full max-w-content" />

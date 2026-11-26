@@ -77,7 +77,7 @@ export function HomeScreen() {
               {t.cta}
             </Button>
           </div>
-          <p className="mt-8 flex items-center gap-3 font-sans text-caption text-ink-muted md:mt-stack md:text-body">
+          <p className="mt-8 flex items-center gap-3 font-sans text-caption text-ink-muted md:mt-stack md:text-small">
             <Image src={dot} alt="" className="size-3" />
             {t.status}
           </p>
