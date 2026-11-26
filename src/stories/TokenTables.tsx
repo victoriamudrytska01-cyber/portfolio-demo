@@ -91,7 +91,9 @@ const pairs: Pair[] = [
   { fg: "canvas", bg: "glow", kind: "text" },
   { fg: "danger", bg: "canvas", kind: "text" },
   { fg: "danger", bg: "surface", kind: "text" },
+  { fg: "ink-muted", bg: "surface", kind: "text" },
   { fg: "ink-muted", bg: "canvas", kind: "border" },
+  { fg: "ink-muted", bg: "surface", kind: "border" },
 ];
 
 function resolveColor(token: string): [number, number, number] {

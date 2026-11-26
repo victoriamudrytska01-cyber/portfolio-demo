@@ -30,7 +30,10 @@
 
 ## Компоненти
 
-Заповнимо далі.
+Кожен компонент лежить у своїй теці `src/components/<Назва>/` разом з історією `<Назва>.stories.tsx` (одна історія, Controls, Docs). Докладний опис, параметри й приклад: Storybook, розділ Components.
+
+- **Button** (`src/components/Button/Button.tsx`): кнопка. Параметри `variant` (`primary`, `secondary`), `size` (`md`, `lg`), `withArrow`, `disabled`, `disabledReason`. Ефекти (світло за курсором, підйом, натискання, стрілка) у `Button.css`. Вимкнена кнопка через `aria-disabled` з видимим поясненням.
+- **FormField** (`src/components/FormField/FormField.tsx`): текстове поле з підписом над ним. Параметри `label`, `id`, `invalid`, `errorMessage`, `disabled`, `disabledReason`, решта атрибутів `input`. Підпис зв'язаний через `htmlFor`/`id`, помилка через `aria-invalid` і `aria-describedby`, вимкнене поле через `aria-disabled` з видимим поясненням.
 
 ## Правила
 
