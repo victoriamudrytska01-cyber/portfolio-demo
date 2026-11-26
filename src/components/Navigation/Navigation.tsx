@@ -1,0 +1,127 @@
+"use client";
+
+import { useEffect, useId, useRef, useState, type ComponentProps, type ReactNode } from "react";
+
+export type NavigationItem = {
+  /** Текст пункту. */
+  label: string;
+  /** Куди веде пункт. */
+  href: string;
+};
+
+export type NavigationProps = Omit<ComponentProps<"nav">, "children"> & {
+  /** Пункти меню. */
+  items: NavigationItem[];
+  /** `href` активного пункту: він отримує `aria-current="page"`. */
+  activeHref?: string;
+  /** Додаткові елементи після пунктів (кнопка, перемикач мови). У вузькому меню йдуть під пунктами. */
+  actions?: ReactNode;
+  /** Доступна назва кнопки-бургера, коли меню закрите. */
+  openLabel?: string;
+  /** Доступна назва кнопки-бургера, коли меню відкрите. */
+  closeLabel?: string;
+};
+
+const focusRing =
+  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
+
+const linkBase = `rounded-control px-3 py-2 font-sans text-body underline underline-offset-4 transition ${focusRing}`;
+const linkActive = "text-ink decoration-current";
+const linkIdle = "text-ink-muted decoration-transparent hover:text-ink hover:decoration-current";
+
+/**
+ * Навігація сайту: пункти меню, а на вузькому екрані кнопка-бургер з меню поверх контенту.
+ * Докладний опис, стани й приклад: вкладка Docs у Storybook.
+ */
+export function Navigation({
+  items,
+  activeHref,
+  actions,
+  openLabel = "Open menu",
+  closeLabel = "Close menu",
+  className,
+  ...props
+}: NavigationProps) {
+  const [open, setOpen] = useState(false);
+  const menuId = useId();
+  const burgerRef = useRef<HTMLButtonElement>(null);
+
+  // Escape закриває відкрите меню й повертає фокус на бургер.
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        burgerRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
+  const renderLinks = (onNavigate?: () => void, extra = "") =>
+    items.map((item) => {
+      const isActive = item.href === activeHref;
+      return (
+        <li key={item.href}>
+          <a
+            href={item.href}
+            aria-current={isActive ? "page" : undefined}
+            onClick={onNavigate}
+            className={[linkBase, isActive ? linkActive : linkIdle, extra].filter(Boolean).join(" ")}
+          >
+            {item.label}
+          </a>
+        </li>
+      );
+    });
+
+  return (
+    <nav
+      {...props}
+      className={["relative flex w-full items-center justify-end md:justify-start", className]
+        .filter(Boolean)
+        .join(" ")}
+    >
+      {/* Широкий екран: пункти й додаткові елементи в рядок. */}
+      <div className="hidden items-center gap-6 md:flex">
+        <ul className="flex items-center gap-6">{renderLinks()}</ul>
+        {actions}
+      </div>
+
+      {/* Вузький екран: кнопка-бургер. */}
+      <button
+        ref={burgerRef}
+        type="button"
+        aria-expanded={open}
+        aria-controls={menuId}
+        aria-label={open ? closeLabel : openLabel}
+        onClick={() => setOpen((value) => !value)}
+        className={`inline-flex items-center justify-center rounded-control p-3 text-ink transition hover:bg-surface md:hidden ${focusRing}`}
+      >
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          className="size-6"
+        >
+          {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+        </svg>
+      </button>
+
+      {/* Відкрите меню лежить поверх контенту (absolute), сторінку вниз не зсуває. Пункти розділені лише відступами. */}
+      <div
+        id={menuId}
+        className={`${open ? "flex" : "hidden"} absolute inset-x-0 top-full z-10 mt-2 flex-col gap-6 rounded-card border border-line bg-surface p-6 md:hidden`}
+      >
+        <ul className="flex flex-col gap-4">
+          {renderLinks(() => setOpen(false), "block font-serif italic text-lead")}
+        </ul>
+        {actions && <div className="flex items-center gap-6">{actions}</div>}
+      </div>
+    </nav>
+  );
+}
