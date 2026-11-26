@@ -46,7 +46,7 @@ export function Logo({
         <Image src={mark} alt="" fill sizes="100vw" className="object-contain" />
       </span>
       {showName && (
-        <span className="flex flex-col">
+        <span className="flex flex-col gap-2">
           <span className="font-serif text-body font-bold md:text-lead">{name}</span>
           <span className="font-sans text-caption">{role}</span>
         </span>
