@@ -7,9 +7,9 @@ const meta = {
   component: Button,
   tags: ["autodocs"],
   decorators: [
-    // primary стоїть на фоні canvas, secondary ("Get in touch") на світлому фоні accent, як на сайті.
+    // primary стоїть на фоні canvas, secondary ("Get in touch") на світлому фоні paper, як на сайті.
     (Story, context) => (
-      <div className={context.args.variant === "secondary" ? "bg-accent p-8" : "bg-canvas p-8"}>
+      <div className={context.args.variant === "secondary" ? "bg-paper p-8" : "bg-canvas p-8"}>
         <Story />
       </div>
     ),

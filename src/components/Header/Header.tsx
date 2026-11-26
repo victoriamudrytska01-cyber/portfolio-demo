@@ -43,7 +43,7 @@ export function Header({
 }: HeaderProps) {
   return (
     // relative потрібен, щоб відкрите меню на вузькому екрані розкривалось на всю ширину шапки.
-    <header {...props} className={["relative w-full bg-accent", className].filter(Boolean).join(" ")}>
+    <header {...props} className={["relative w-full bg-paper", className].filter(Boolean).join(" ")}>
       <div className="header__row flex items-center justify-between gap-4 px-4 py-4 md:gap-6 md:px-gutter">
         <Logo name={name} role={role} href={logoHref} />
         <Navigation

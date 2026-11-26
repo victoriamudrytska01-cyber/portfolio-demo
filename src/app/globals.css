@@ -13,6 +13,8 @@
   --color-surface: #1a2024;
   --color-line: #2a3238;
   --color-accent: #f0e1d6;
+  /* Фон світлої шапки (bg-paper): колір --paper старого сайту, трохи світліший за accent (кнопка) */
+  --color-paper: #f2e8dd;
   --color-glow: #cba697;
   --color-ink: #f5e8de;
   --color-ink-muted: #b9afa5;

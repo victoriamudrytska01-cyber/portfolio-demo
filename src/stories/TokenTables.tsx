@@ -94,6 +94,7 @@ const pairs: Pair[] = [
   { fg: "canvas", bg: "accent", kind: "text" },
   { fg: "accent", bg: "canvas", kind: "text" },
   { fg: "canvas", bg: "glow", kind: "text" },
+  { fg: "canvas", bg: "paper", kind: "text" },
   { fg: "danger", bg: "canvas", kind: "text" },
   { fg: "danger", bg: "surface", kind: "text" },
   { fg: "ink-muted", bg: "surface", kind: "text" },

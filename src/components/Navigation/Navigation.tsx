@@ -134,7 +134,7 @@ export function Navigation({
           ) : (
             <>
               <polygon points="6,2 34,2 30,6 2,6" />
-              <polygon points="2,6 6,2 11,2 7,6" className="fill-accent opacity-60" />
+              <polygon points="2,6 6,2 11,2 7,6" className="fill-paper opacity-60" />
               <polygon points="19,10 34,10 30,14 15,14" />
               <polygon points="6,18 34,18 30,22 2,22" />
             </>
@@ -145,7 +145,7 @@ export function Navigation({
       {/* Відкрите меню лежить поверх контенту (absolute), сторінку вниз не зсуває. Пункти розділені лише відступами. */}
       <div
         id={menuId}
-        className={`${open ? "flex" : "hidden"} nav-panel absolute top-full z-10 flex-col gap-6 bg-accent px-4 pb-6 pt-4 md:hidden`}
+        className={`${open ? "flex" : "hidden"} nav-panel absolute top-full z-10 flex-col gap-6 bg-paper px-4 pb-6 pt-4 md:hidden`}
       >
         <ul className="flex flex-col" onClick={handlePanelClick}>
           {renderLinks(true)}
