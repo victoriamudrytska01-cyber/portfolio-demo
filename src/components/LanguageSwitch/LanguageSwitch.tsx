@@ -1,9 +1,10 @@
 import type { ComponentProps } from "react";
+import "./LanguageSwitch.css";
 
 export type Language = "EN" | "UA";
 
 export type LanguageSwitchProps = Omit<ComponentProps<"div">, "onChange" | "children"> & {
-  /** Активна мова: `EN` або `UA`. Позначається жирним `ink` і `aria-current="true"`. */
+  /** Активна мова: `EN` або `UA`. Позначається жирним `canvas` і `aria-current="true"`. */
   value: Language;
   /** Викликається, коли користувач вибирає мову. */
   onChange?: (language: Language) => void;
@@ -17,9 +18,9 @@ export type LanguageSwitchProps = Omit<ComponentProps<"div">, "onChange" | "chil
 
 const buttonBase =
   "rounded-control px-3 py-2 font-sans text-body underline underline-offset-4 transition " +
-  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
-const buttonActive = "font-semibold text-ink decoration-transparent hover:decoration-current";
-const buttonIdle = "text-ink-muted decoration-transparent hover:text-ink hover:decoration-current";
+  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-canvas";
+const buttonActive = "font-semibold text-canvas decoration-transparent hover:decoration-current";
+const buttonIdle = "lang-switch__muted decoration-transparent hover:decoration-current";
 
 /**
  * Перемикач мови EN / UA. Докладний опис, стани й приклад: вкладка Docs у Storybook.
@@ -48,7 +49,7 @@ export function LanguageSwitch({
       {languages.map((language, index) => (
         <span key={language.code} className="inline-flex items-center">
           {index > 0 && (
-            <span aria-hidden="true" className="font-sans text-body text-ink-muted">
+            <span aria-hidden="true" className="lang-switch__muted font-sans text-body">
               /
             </span>
           )}

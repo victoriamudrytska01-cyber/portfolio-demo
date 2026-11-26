@@ -23,11 +23,11 @@ export type NavigationProps = Omit<ComponentProps<"nav">, "children"> & {
 };
 
 const focusRing =
-  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
+  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-canvas";
 
 const linkBase = `rounded-control px-3 py-2 font-sans text-body underline underline-offset-4 transition ${focusRing}`;
-const linkActive = "text-ink decoration-current";
-const linkIdle = "text-ink-muted decoration-transparent hover:text-ink hover:decoration-current";
+const linkActive = "text-canvas decoration-current";
+const linkIdle = "text-canvas decoration-transparent hover:decoration-current";
 
 /**
  * Навігація сайту: пункти меню, а на вузькому екрані кнопка-бургер з меню поверх контенту.
@@ -97,7 +97,7 @@ export function Navigation({
         aria-controls={menuId}
         aria-label={open ? closeLabel : openLabel}
         onClick={() => setOpen((value) => !value)}
-        className={`inline-flex items-center justify-center rounded-control p-3 text-ink transition hover:bg-surface md:hidden ${focusRing}`}
+        className={`inline-flex items-center justify-center rounded-control p-3 text-canvas transition hover:bg-glow md:hidden ${focusRing}`}
       >
         <svg
           aria-hidden="true"
@@ -115,7 +115,7 @@ export function Navigation({
       {/* Відкрите меню лежить поверх контенту (absolute), сторінку вниз не зсуває. Пункти розділені лише відступами. */}
       <div
         id={menuId}
-        className={`${open ? "flex" : "hidden"} absolute inset-x-0 top-full z-10 mt-2 flex-col gap-6 rounded-card border border-line bg-surface p-6 md:hidden`}
+        className={`${open ? "flex" : "hidden"} absolute inset-x-0 top-full z-10 mt-2 flex-col gap-6 rounded-card border border-canvas bg-accent p-6 md:hidden`}
       >
         <ul className="flex flex-col gap-4">
           {renderLinks(() => setOpen(false), "block font-serif italic text-lead")}

@@ -15,7 +15,7 @@ export type ButtonProps = Omit<ComponentProps<"button">, "disabled"> & {
 };
 
 const base =
-  "btn-fx group inline-flex items-center justify-center rounded-control border font-sans font-medium transition " +
+  "btn-fx group inline-flex items-center justify-center whitespace-nowrap rounded-control border font-sans font-medium transition " +
   "focus-visible:outline-2 focus-visible:outline-offset-2 " +
   "aria-disabled:cursor-not-allowed aria-disabled:border-line aria-disabled:bg-canvas aria-disabled:text-ink-muted";
 

@@ -1,26 +1,41 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { useState } from "react";
 import { Button } from "../Button/Button";
+import { LanguageSwitch, type Language } from "../LanguageSwitch/LanguageSwitch";
 import { Navigation } from "./Navigation";
 
-// Пункти меню зі старого сайту: «My work», «About me»; кнопка «Get in touch» стоїть в actions.
+// Пункти меню зі старого сайту: «My work», «About me». Перемикач мови й темна кнопка «Get in touch»
+// стоять в actions, як у шапці старого сайту.
 const items = [
   { label: "My work", href: "#work" },
   { label: "About me", href: "#about" },
 ];
+
+function NavigationActions() {
+  const [language, setLanguage] = useState<Language>("EN");
+  return (
+    <>
+      <LanguageSwitch value={language} onChange={setLanguage} />
+      <Button variant="secondary">Get in touch</Button>
+    </>
+  );
+}
 
 const meta = {
   title: "Components/Navigation",
   component: Navigation,
   tags: ["autodocs"],
   decorators: [
-    // Навігація задумана для фону canvas: показуємо її на ньому.
+    // Шапка сайту світла: показуємо навігацію на фоні accent.
     (Story) => (
-      <div className="w-full bg-canvas p-8">
+      <div className="w-full bg-accent p-8">
         <Story />
       </div>
     ),
   ],
   parameters: {
+    // Навігація займає всю ширину шапки: без цього в центрованому макеті вона стискається до розміру бургера.
+    layout: "fullscreen",
     docs: {
       description: {
         component: `
@@ -40,22 +55,24 @@ const meta = {
 
 ### Варіанти і стани
 
-- **Пункт, default**: текст \`ink-muted\`, без підкреслення.
-- **Hover**: текст \`ink\`, з'являється підкреслення.
-- **Focus** (клавіатура): контур \`accent\` із відступом.
-- **Активний пункт** (\`aria-current="page"\`): текст \`ink\` і постійне підкреслення. У Storybook перемикається в Controls.
-- **Вузький екран** (до ширини \`md\`): пункти ховаються, з'являється кнопка-бургер з \`aria-expanded\`, \`aria-controls\` і доступною назвою (змінюється, коли меню відкрите). Відкрите меню лежить поверх контенту на заливці \`surface\` з межею \`line\`, пункти розділені лише відступами, без ліній. Меню закривається клавішею Escape (фокус повертається на бургер) і після вибору пункту.
+- Навігація призначена для світлої шапки (фон \`accent\`), як на старому сайті, тому всі пункти мають темний текст \`canvas\`. У Storybook вона показана на \`accent\` разом із перемикачем мови й темною кнопкою «Get in touch» (\`secondary\`). Світла кремова кнопка \`primary\` у навігації не використовується.
+- **Пункт, default**: текст \`canvas\`, без підкреслення.
+- **Hover**: з'являється підкреслення.
+- **Focus** (клавіатура): контур \`canvas\` із відступом.
+- **Активний пункт** (\`aria-current="page"\`): текст \`canvas\` і постійне підкреслення. У Storybook перемикається в Controls.
+- **Вузький екран** (до ширини \`md\`): пункти ховаються, з'являється кнопка-бургер з \`aria-expanded\`, \`aria-controls\` і доступною назвою (змінюється, коли меню відкрите). Відкрите меню лежить поверх контенту на заливці \`accent\` з межею \`canvas\`, пункти розділені лише відступами, без ліній. Меню закривається клавішею Escape (фокус повертається на бургер) і після вибору пункту.
 - Перевірити вузький екран у Storybook можна через Viewport у панелі інструментів.
 
 ### Токени
 
-Кольори: \`ink\`, \`ink-muted\`, \`accent\`, \`surface\`, \`line\`. Радіуси: \`rounded-control\`, \`rounded-card\`. Текст: \`text-body\`, у вузькому меню \`text-lead\` курсивом \`font-serif\`. Відступи: \`2\`, \`3\`, \`4\`, \`6\`. Контраст пар перевіряється в таблиці «Пари кольорів і контраст» на сторінці Foundations/Tokens: \`ink-muted\` на \`canvas\` 8,51:1, \`ink\` на \`canvas\` 15,28:1, \`ink\` на \`surface\` 13,70:1, \`ink-muted\` на \`surface\` 7,63:1.
+Кольори: \`canvas\` (текст), \`accent\` (фон), \`glow\` (фон бургера при наведенні). Радіуси: \`rounded-control\`, \`rounded-card\`. Текст: \`text-body\`, у вузькому меню \`text-lead\` курсивом \`font-serif\`. Відступи: \`2\`, \`3\`, \`4\`, \`6\`. Контраст: \`canvas\` на \`accent\` 14,37:1, \`canvas\` на \`glow\` 8,25:1 (обидві пари є в таблиці «Пари кольорів і контраст» на сторінці Foundations/Tokens).
 
 ### Коли використовувати
 
 - Одна навігація на сторінку, у шапці.
 - Активним став пункт сторінки, на якій користувач зараз.
 - Не клади в \`items\` кнопки дій: для них є \`actions\`.
+- Став навігацію на світлий фон \`accent\`: на темному текст \`canvas\` не читається.
 - Не додавай ліній між пунктами меню, лише відступи.
 
 ### Як взяти в код
@@ -70,7 +87,12 @@ import { Navigation } from "@/components/Navigation/Navigation";
     { label: "About me", href: "#about" },
   ]}
   activeHref="#work"
-  actions={<Button variant="primary">Get in touch</Button>}
+  actions={
+    <>
+      <LanguageSwitch value={language} onChange={setLanguage} />
+      <Button variant="secondary">Get in touch</Button>
+    </>
+  }
 />
 \`\`\`
 `,
@@ -90,7 +112,7 @@ import { Navigation } from "@/components/Navigation/Navigation";
     "aria-label": "Main",
     items,
     activeHref: "#work",
-    actions: <Button variant="primary">Get in touch</Button>,
+    actions: <NavigationActions />,
   },
 } satisfies Meta<typeof Navigation>;
 
