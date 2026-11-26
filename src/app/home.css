@@ -1,0 +1,94 @@
+/*
+ * Розкладка головного екрана. Усі розміри з токенів (var(--spacing-*), var(--text-*)).
+ * Значення відсотків стрічки (обрізка) взято зі старого сайту.
+ */
+
+/* Перший екран заповнює висоту вікна під шапкою: 80 px на вузькому екрані, 96 px на широкому. */
+.hero {
+  min-height: calc(100svh - (var(--spacing-8) * 2 + var(--spacing-4)));
+}
+
+@media (min-width: 48rem) {
+  .hero {
+    min-height: calc(100svh - var(--spacing-8) * 3);
+  }
+}
+
+/*
+ * Заголовок: на телефоні зменшені розміри токенів (display 13/18 = 52 px, heading 2/3 = 32 px,
+ * як на старому мобільному сайті), від md розміри токенів без змін.
+ */
+.hero .hero__strong.text-display {
+  font-size: calc(var(--text-display) * 13 / 18);
+}
+
+.hero .hero__italic.text-heading {
+  font-size: calc(var(--text-heading) * 2 / 3);
+}
+
+@media (min-width: 48rem) {
+  .hero .hero__strong.text-display {
+    font-size: var(--text-display);
+  }
+
+  .hero .hero__italic.text-heading {
+    font-size: var(--text-heading);
+  }
+}
+
+.hero__strong {
+  display: block;
+}
+
+.hero__italic > span {
+  display: block;
+  white-space: nowrap;
+}
+
+/* Ширина підзаголовка: 15 кроків відступу 8 (480 px). */
+.hero__lead {
+  max-width: calc(var(--spacing-8) * 15);
+}
+
+/* Кнопка «View my work» на телефоні на всю ширину (обгортка Button теж розтягується). */
+@media (max-width: 47.9375rem) {
+  .hero__cta,
+  .hero__cta > div,
+  .hero__cta button {
+    width: 100%;
+  }
+}
+
+/*
+ * Стрічка VM: обрізка зображення в рамці aspect-ribbon, як на старому сайті (відсотки обрізки),
+ * плавання вгору й легкий нахил. Без руху при prefers-reduced-motion.
+ */
+.hero__art-img {
+  position: absolute;
+  max-width: none;
+  width: 114.6%;
+  height: 112.08%;
+  left: -7.23%;
+  top: -6.78%;
+}
+
+.hero__art {
+  animation: ribbon-float 8s ease-in-out infinite;
+}
+
+@keyframes ribbon-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(calc(var(--spacing-3) * -1)) rotate(1.5deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__art {
+    animation: none;
+  }
+}

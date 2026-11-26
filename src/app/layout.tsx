@@ -3,8 +3,8 @@ import { fontVariables } from "./fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Portfolio",
-  description: "UX/UI designer portfolio",
+  title: "Victoria Mudrytska — UX/UI Designer",
+  description: "I design mobile apps and websites where the path is easy to follow.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
