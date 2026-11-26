@@ -1,6 +1,7 @@
 import { Meta, ColorPalette, ColorItem } from "@storybook/addon-docs/blocks";
 
 import { fontVariables } from "../app/fonts";
+import { ContrastTable, TypeScaleTable } from "./TokenTables";
 
 export const fv = fontVariables;
 
@@ -40,6 +41,12 @@ export const fv = fontVariables;
 
 Межа поля форми й кнопки без заливки: `ink-muted`, не `line`.
 
+## Пари кольорів і контраст
+
+Пари «текст на фоні», які будуть у компонентах. Контраст рахується за формулою WCAG з тих самих змінних: змінили колір, таблиця перерахувалась. Для тексту потрібно не менше 4,5:1, для межі поля не менше 3:1.
+
+<ContrastTable />
+
 ## Шрифти
 
 <div className={fv + " sb-unstyled bg-canvas text-ink p-8 flex flex-col gap-6"}>
@@ -50,6 +57,12 @@ export const fv = fontVariables;
   <div className="font-display text-display">text-display: Створюю</div>
   <div className="font-sans text-caption text-ink-muted">Розмір, висота рядка, трекінг і жирність кожного кроку задані парами в @theme.</div>
 </div>
+
+## Розміри тексту
+
+Кожен крок шкали: розмір, висота рядка, трекінг і жирність задані парами в @theme. Значення в таблиці прочитано з браузера.
+
+<TypeScaleTable />
 
 ## Радіуси
 
