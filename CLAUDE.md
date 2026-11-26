@@ -79,3 +79,4 @@
 
 - План сайту: [plan.md](plan.md)
 - Storybook: `npm run storybook`, http://localhost:6006 (Components, Foundations/Tokens)
+- Storybook, публічна адреса: https://portfolio-demo-ten-indol.vercel.app/storybook/
