@@ -1,0 +1,59 @@
+import type { ComponentProps, ReactNode } from "react";
+import { Logo } from "../Logo/Logo";
+import { Navigation, type NavigationItem } from "../Navigation/Navigation";
+
+export type HeaderProps = Omit<ComponentProps<"header">, "children"> & {
+  /** Пункти меню. */
+  items: NavigationItem[];
+  /** `href` активного пункту. */
+  activeHref?: string;
+  /** Елементи після пунктів: перемикач мови, кнопка «Get in touch». */
+  actions?: ReactNode;
+  /** Ім'я в логотипі. */
+  name?: string;
+  /** Підпис під іменем у логотипі. */
+  role?: string;
+  /** Куди веде логотип. */
+  logoHref?: string;
+  /** Доступна назва навігації. */
+  navigationLabel?: string;
+  /** Доступна назва бургера, коли меню закрите. */
+  openLabel?: string;
+  /** Доступна назва бургера, коли меню відкрите. */
+  closeLabel?: string;
+};
+
+/**
+ * Шапка сайту: логотип ліворуч, навігація праворуч. Докладний опис, стани й приклад:
+ * вкладка Docs у Storybook.
+ */
+export function Header({
+  items,
+  activeHref,
+  actions,
+  name,
+  role,
+  logoHref,
+  navigationLabel = "Main",
+  openLabel,
+  closeLabel,
+  className,
+  ...props
+}: HeaderProps) {
+  return (
+    // relative потрібен, щоб відкрите меню на вузькому екрані розкривалось на всю ширину шапки.
+    <header {...props} className={["relative w-full bg-accent", className].filter(Boolean).join(" ")}>
+      <div className="mx-auto flex max-w-content items-center justify-between gap-4 px-4 py-6 md:gap-6 md:px-8">
+        <Logo name={name} role={role} href={logoHref} />
+        <Navigation
+          aria-label={navigationLabel}
+          items={items}
+          activeHref={activeHref}
+          actions={actions}
+          openLabel={openLabel}
+          closeLabel={closeLabel}
+        />
+      </div>
+    </header>
+  );
+}

@@ -47,7 +47,7 @@ export function Logo({
       </span>
       {showName && (
         <span className="flex flex-col">
-          <span className="whitespace-nowrap font-serif text-lead font-bold">{name}</span>
+          <span className="font-serif text-lead font-bold">{name}</span>
           <span className="font-sans text-caption">{role}</span>
         </span>
       )}

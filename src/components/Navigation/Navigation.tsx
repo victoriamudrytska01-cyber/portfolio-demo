@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState, type ComponentProps, type ReactNode } from "react";
+import "./Navigation.css";
 
 export type NavigationItem = {
   /** Текст пункту. */
@@ -79,7 +80,7 @@ export function Navigation({
   return (
     <nav
       {...props}
-      className={["relative flex w-full items-center justify-end md:justify-start", className]
+      className={["flex items-center", className]
         .filter(Boolean)
         .join(" ")}
     >
@@ -115,7 +116,7 @@ export function Navigation({
       {/* Відкрите меню лежить поверх контенту (absolute), сторінку вниз не зсуває. Пункти розділені лише відступами. */}
       <div
         id={menuId}
-        className={`${open ? "flex" : "hidden"} absolute inset-x-0 top-full z-10 mt-2 flex-col gap-6 rounded-card border border-canvas bg-accent p-6 md:hidden`}
+        className={`${open ? "flex" : "hidden"} nav-panel absolute top-full z-10 flex-col gap-6 border-y border-canvas bg-accent px-8 py-6 md:hidden`}
       >
         <ul className="flex flex-col gap-4">
           {renderLinks(() => setOpen(false), "block font-serif italic text-lead")}
